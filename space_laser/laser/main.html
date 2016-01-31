@@ -67,7 +67,7 @@
 
         var spotLight = new THREE.DirectionalLight(0xffffff);
         spotLight.position.set(550, 100, 550);
-        spotLight.intensity = 0.6;
+        spotLight.intensity = 1.2;
 
         scene.add(spotLight);
 
@@ -101,10 +101,12 @@
 
 
         var gui = new dat.GUI();
-        //gui.add(controls, "scanlinesIntensity", 0, 1).onChange(controls.updateEffectFilm);
-        //gui.add(controls, "noiseIntensity", 0, 3).onChange(controls.updateEffectFilm);
-        //gui.add(controls, "grayscale").onChange(controls.updateEffectFilm);
-        //gui.add(controls, "scanlinesCount", 0, 2048).step(1).onChange(controls.updateEffectFilm);
+
+        //these lines were commented out
+        gui.add(controls, "scanlinesIntensity", 0, 1).onChange(controls.updateEffectFilm);
+        gui.add(controls, "noiseIntensity", 0, 3).onChange(controls.updateEffectFilm);
+        gui.add(controls, "grayscale").onChange(controls.updateEffectFilm);
+        gui.add(controls, "scanlinesCount", 0, 2048).step(1).onChange(controls.updateEffectFilm);
 
         // call the render function
         var step = 0;
@@ -125,7 +127,8 @@
 
             planetMaterial.normalMap = normalTexture;
             planetMaterial.map = planetTexture;
-//               planetMaterial.shininess = 150;
+
+            planetMaterial.shininess = 150;
 
 
             // create a multimaterial
