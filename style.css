@@ -8,7 +8,7 @@ body {
 
 }
 
-#main {
+.main {
     padding: 5px;
     padding-left:  15px;
     padding-right: 15px;
@@ -24,17 +24,17 @@ h1 {
     line-height: 100%;
 }
 
-ul#menu {
+ul.menu {
     padding: 0;
     margin-bottom: 11px;
 }
 
-ul#menu li {
+ul.menu li {
     display: inline;
     margin-right: 3px;
 }
 
-ul#menu li a {
+ul.menu li a {
     background-color: #ffffff;
     padding: 10px 20px;
     text-decoration: none;
@@ -42,7 +42,7 @@ ul#menu li a {
     border-radius: 4px 4px 0 0;
 }
 
-ul#menu li a:hover {
+ul.menu li a:hover {
     color: white;
     background-color: black;
 }
