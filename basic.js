@@ -1,6 +1,6 @@
 
 
-document.getElementByClassName("nav01").innerHTML =
+document.getElementsByClassName("nav01").innerHTML =
 "<ul id='menu'>" +
 "<li><a href='index.html'>Home</a></li>" +
 "<li><a href='irc.html'>IRC</a></li>" +
