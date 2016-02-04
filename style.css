@@ -32,6 +32,10 @@ h1 {
 }
 .menu .menu-item {
     float: left;
+    border-radius: 4px 4px 0 0;
+}
+.menu .menu-item:hover {
+    background-color: #ddd;
 }
 .menu .menu-link.active, .menu .menu-link.active:focus, .menu .menu-link.active:hover {
     color: #55595c;
@@ -42,7 +46,8 @@ h1 {
     display: block;
     padding: 8px 16px;
     border: 1px solid #ddd;
-    border-radius: 4px 4px 0 0;
+    text-decoration: none;
+    color: #696969;
 }
 .menu .menu-item + .menu-item {
     margin-left: 3.2px;
