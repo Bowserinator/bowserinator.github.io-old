@@ -1,5 +1,3 @@
-
-
 $(".nav01").html(
 "<ul class=\"menu\">" +
 "<li><a href=\"index.html\">Home</a></li>" +
