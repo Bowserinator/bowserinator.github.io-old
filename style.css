@@ -34,7 +34,7 @@ h1 {
     float: left;
     border-radius: 4px 4px 0 0;
 }
-.menu .menu-link.active {
+.menu .menu-link.active, .menu .menu-link.active:hover {
     color: #55595c;
     background-color: #ddd;
     border-color: #ddd #ddd transparent;
