@@ -34,12 +34,14 @@ h1 {
     float: left;
     border-radius: 4px 4px 0 0;
 }
-.menu .menu-item:hover {
-    background-color: #ddd;
-}
-.menu .menu-link.active, .menu .menu-link.active:focus, .menu .menu-link.active:hover {
+.menu .menu-link.active {
     color: #55595c;
     background-color: #ddd;
+    border-color: #ddd #ddd transparent;
+}
+.menu .menu-link:hover {
+    color: #55595c;
+    background-color: #eee;
     border-color: #ddd #ddd transparent;
 }
 .menu .menu-link {
@@ -48,6 +50,8 @@ h1 {
     border: 1px solid #ddd;
     text-decoration: none;
     color: #696969;
+    border-radius: 4px 4px 0 0;
+    background-color: #fff;
 }
 .menu .menu-item + .menu-item {
     margin-left: 3.2px;
