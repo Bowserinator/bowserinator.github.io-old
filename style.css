@@ -24,25 +24,31 @@ h1 {
     line-height: 100%;
 }
 
-ul.menu {
-    padding: 0;
-    margin-bottom: 11px;
+.menu {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    border-bottom: 1px solid #ddd;
 }
-
-ul.menu li {
-    display: inline;
-    margin-right: 3px;
+.menu .menu-item {
+    float: left;
 }
-
-ul.menu li a {
-    background-color: #ffffff;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #696969;
+.menu .menu-link.active, .menu .menu-link.active:focus, .menu .menu-link.active:hover {
+    color: #55595c;
+    background-color: #ddd;
+    border-color: #ddd #ddd transparent;
+}
+.menu .menu-link {
+    display: block;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
     border-radius: 4px 4px 0 0;
 }
-
-ul.menu li a:hover {
-    color: white;
-    background-color: black;
+.menu .menu-item + .menu-item {
+    margin-left: 3.2px;
+}
+.menu:after {
+    display: table;
+    clear: both;
+    content: "";
 }
