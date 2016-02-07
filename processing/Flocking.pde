@@ -12,7 +12,7 @@
 Flock flock;
 
 void setup() {
-  size(800,600);
+  size(window.innerWidth,window.innerHeight);
   flock = new Flock();
   // Add an initial set of boids into the system
   for (int i = 0; i < 150; i++) {
@@ -22,7 +22,7 @@ void setup() {
 
 void draw() {
   background(50);
-  flock.run();
+ size(window.innerWidth,window.innerHeight); flock.run();
 }
 
 // Add a new boid into the System
