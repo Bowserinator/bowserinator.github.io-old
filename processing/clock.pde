@@ -78,7 +78,7 @@ void setup(){
 
 void draw(){
     background(255); 
-    textAlign(LEFT,TOP); fill(240); textLeading(10);
+    textAlign(LEFT,TOP); fill(245); textLeading(10);
     text(txt,0,0,sizeX*8,sizeY*8);
     
     fill(0); textSize(140); textAlign(CENTER,CENTER);
