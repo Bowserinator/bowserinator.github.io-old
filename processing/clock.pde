@@ -93,4 +93,7 @@ void draw(){
     }
     text(getTime2(),sizeX,sizeY*1.2);
     text(getTime3(),sizeX,sizeY*1.3);
+    textAlign(LEFT,TOP); textSize(20); fill(150);
+    text(new Date(),0,0);
+    text("Project by Lord Bowserinator.",0,20);
 }
