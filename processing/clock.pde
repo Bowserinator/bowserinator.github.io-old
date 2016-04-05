@@ -82,7 +82,7 @@ void draw(){
     text(txt,0,0,sizeX*8,sizeY*8);
     
     fill(0); textSize(140); textAlign(CENTER,CENTER);
-    if (getTime() <= 14*3600+49*60+SHIFT && getTime() >= 7*3600+45*60+SHIFT){
+    if (!(getTime() <= 14*3600+49*60+SHIFT && getTime() >= 7*3600+45*60+SHIFT)){
         text("00:00:00",sizeX,sizeY*0.8);
         textSize(40);
         text("School is over!",sizeX,sizeY*1.1);
