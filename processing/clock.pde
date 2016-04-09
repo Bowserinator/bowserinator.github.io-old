@@ -28,9 +28,9 @@ void draw(){
   if(state == 0){    //ScHOOL COUNTDOWN DEFAULT
     Date now = new Date();
     textAlign(CENTER,TOP); textSize(sizeX/50); fill(200);
-    text(now,sizeX/2,sizeY*0.5 + sizeX * 0.25);
-    text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX/2,sizeY*0.5 + sizeX * 0.27);
-    text("WORK IN PROGRESS!!!!",sizeX/2,sizeY* 0.9);
+    text(now,sizeX/2,sizeY*0.73);
+    text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX/2,sizeY*0.75+sizeX/100);
+    text("WORK IN PROGRESS!!!!",sizeX/2,sizeY*0.9);
     
     result = school.getTimeRemaining();
     h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
@@ -40,15 +40,15 @@ void draw(){
      
     //DRAW PERCENT BAR
     fill(20);
-    rect(sizeX*0.05,sizeY*0.5 + sizeX * 0.22,sizeX*0.9,sizeY*0.01);
+    rect(sizeX*0.05,sizeY*0.68,sizeX*0.9,sizeY*0.01);
     if (!(m == 0 && s == 0 && h==0)){ 
       fill(255,50,0); textSize(sizeY*0.02); textAlign(LEFT,TOP);
-      rect(sizeX*0.05,sizeY*0.5 + sizeX * 0.22,sizeX*0.9 * (school.getPercentDone()),sizeY*0.01);
-      text(int(school.getPercentDone()*100)+"%",sizeX*0.05 + sizeX*0.91,sizeY*0.5 + sizeX * 0.22);
+      rect(sizeX*0.05,sizeY*0.68,sizeX*0.9 * (school.getPercentDone()),sizeY*0.01);
+      text(int(school.getPercentDone()*100)+"%",sizeX*0.05 + sizeX*0.91,sizeY*0.675);
     }else{
       fill(255,50,0); textSize(sizeY*0.02); textAlign(LEFT,TOP);
-      rect(sizeX*0.05,sizeY*0.5 + sizeX * 0.22,sizeX*0.9 ,sizeY*0.01);
-      text(int(100)+"%",sizeX*0.05 + sizeX*0.91,sizeY*0.5 + sizeX * 0.22);
+      rect(sizeX*0.05,sizeY*0.68,sizeX*0.9 ,sizeY*0.01);
+      text(int(100)+"%",sizeX*0.05 + sizeX*0.91,sizeY*0.675);
     }
   }
 }
@@ -191,6 +191,3 @@ String realTime(){
   returned = h + ":"+ m + ":" + s;
   return returned;
 }
-
-
-
