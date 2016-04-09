@@ -1,103 +1,194 @@
-//https://bowserchannelbot-bowserinator.c9users.io/Website/main.html
+//WIP
+//Add custom selection for day
 
-/*
-Global Variables
-*/
+Timer hoursEnd, minutesEnd, secondsEnd;
+SchoolEnd school;
 
-int currentTime=0;
-int sizeX,sizeY;
-int SHIFT = 179;
-color[] c = {color(255,255,200),color(200,255,200),color(200,200,255),color(255)};
-
-String txt = "Muhlenrad sie unterwegs dahinging nur dir tanzmusik plotzlich ihr. Da uberwunden neidgefuhl in nachtessen ei. So filzhut da scheint zu standen geruckt bruchig. Tor bosheit schonen tat bis klopfen wie zuhorte brachte. Ubelnehmen messingnen die aufmerksam augenblick gearbeitet das. Es getraumt befehlen an wu schmalen spateren geholfen zu. Es horen hinab kinde fu zu stand sitte. Den jenseits ehe tal gerberei ist lampchen. Darum herum woher ruhig sie tun weg ferne lernt gut. Gehort gesund harten luftig so wochen bandes fu ab. Bi behalten se ab begehrte schreibt da. Was sicher auf lassig sommer des ich. Zeigte ungern sirach lauter zur knarre ten drohte ihr man. Du nichtstun zufrieden bekannten pa wu hauswesen. Ort nur endigend erzahlte spielend hausherr ihr schmales tadellos. Wu preisen so pa argerte gefallt wahrend schonen. Neu ich merken lieber nur lebtag lehnte. Nun gedacht gelernt ich spielte glatten gerbers. So es fest denn kann sein welt. Storen uhr vom handen sei soviel ich minder. Heut fur ehe lie warm aber weg. Jahre von und bette wer kommt tur. Je wobei tiefe um am suppe danke. Gelben fallen ei seinem du sorgen. Gut stehen knarre morgen hei bat. See ordnen ort hol neu brauen solche. Ewige krank bei kalte neu sehet unter. Geschickt das unendlich hol geblieben den grasplatz. Nah wir die ungerechte sonderling halboffene wohlgefuhl flusterton. Umwolkt je spielen sa sondern ab. Laufet ein laufen jemals hob kugeln leuten stehen. Da sich wert in sohn. Da da wies alte igen er bald. Gro sudwesten viehmarkt weg sah stadtchen schnupfen. Sauber mit morgen weg frauen ihm. Ein klimperte vermodert polemisch unendlich schnupfen schleiche des ihm sie. Spiel sahen das fur viele sonst leben leuen. Pa vermodert schwemmen gegenteil wo zerfasert. Wunderbar in schwemmen grundlich belustigt turnhalle im behaglich. Ihre hell paar froh kerl weg man buch. Dienstmagd regungslos sonderling gib ungerechte ein besonderes auf der. Anrufen em instand nachdem kindern meister mu niemand am da. Gewandert schwachen man schlupfte wie geschickt ich sog. Wo bewirtung zerfasert so kraftiger handwerke ri la kindliche. Tage ja grad so mann. Gut gerberei bis gefallen arbeiter. Nun tat kostet lebtag gefegt konnen treppe laufet. Da schwarzes bewirtung ja so barbieren da. Augenblick auf hoffnungen nachtessen bilderbuch von aufmerksam todesfalle. Hoch ja ihre ab kerl en hatt uben. Sprechen gekommen allerlei lachelte blo gab sprachen gefallen. Horchend schreibt schaffte das blaulich sog hof nie. So wo stelle labsal worden du hockte in schade. Sa mu storen du rechte diesen strich nimmer ziegen. Bezahlen mehrmals zunachst ins spielend wie schlafet. Ausblasen wer auf sei neugierig geschickt und. Verlassen gegenuber und vergesset ich gegriffen ausgeruht aus. Mi gemessen gewartet verwohnt sa funkelte schlafen in. Neues sei indes takte sehen hob gru wovon weg. So am um nichts konnen sommer. Mehr wert ganz du doch je froh uber. Ins herkommen fur behaglich schreiben das kammertur vermodert. Des hufschmied vor eigentlich als bodenlosen was. Zusammen fur kindbett war geworden lockigen befehlen. Brauchen flu blattern vor sorglich marschen nun richtete. Brotkugeln der wie vorsichtig ein ist geschlafen. Zitterte sah hinunter weg sog konntest gelernte schuftet. Sauberlich nachmittag sto landsleute ungerechte lehrlingen gro all. Stelle als fertig beugte allein blo. Ei tate stie fiel wies chen ja es. Hatten gruben hob kostet zur sofort las ins. Du ob achtete im da solange stellte ordnung standen. Bummelte se spateren vorwarts so wo heiraten. Die weiterhin verweilen einfacher duftenden bei geh musterung. Einfach fremder uhr gefreut saubere gru antwort ten die. Als weiblein lampchen schlafer burschen das wohlfeil gut art. Fast kaum tut aber auch hoch nie dort. Gerochen ihr schlafet tat ein gerberei wunschte ehe vollbart blattern. Wieder ri um gelang feinen keinem in bi. Ebenso he ja lebtag vorbei da. Halboffene da achthausen vorsichtig bi du gerbersteg. Schaute klopfte zwingen gelernt mit unrecht auffiel bei. See verlohnt getraumt wer begegnen sto spateren sorgfalt. ";
-txt = txt+txt+txt+txt+txt;
-
-int getTime(){
-    return hour()*3600 + minute()*60 + second();
-}
-
-String subTime(){
-    int dif = 14*3600 + 60*49 + SHIFT - getTime();
-    int hour = dif / 3600; int minute = (dif - floor(hour)*3600)/60; int second = (dif - floor(hour)*3600 - floor(minute)*60);
-    hour = floor(hour); minute = floor(minute); second = floor(second);
-    String h,m,s;
-    
-    if (hour < 10){ h = "0"+hour;}
-    else{h = ""+hour;}
-    
-    if (minute < 10){ m = "0"+minute;}
-    else{m = ""+minute;}
-    
-    if (second < 10){ s = "0"+second;}
-    else{s = ""+second;}
-    return h + ":" + m + ":" + s;
-    
-}
-
-String getTime2(){
-    int dif = getTime();
-    int hour = dif / 3600; int minute = (dif - floor(hour)*3600)/60; int second = (dif - floor(hour)*3600 - floor(minute)*60);
-    String h,m,s;
-    hour = floor(hour); minute = floor(minute); second = floor(second);
-    
-    if (hour < 10){ h = "0"+hour;}
-    else{h = ""+hour;}
-    
-    if (minute < 10){ m = "0"+minute;}
-    else{m = ""+minute;}
-    
-    if (second < 10){ s = "0"+second;}
-    else{s = ""+second;}
-    return "Real time: " + h + ":" + m + ":" + s;
-    
-}
-
-String getTime3(){
-    int dif = getTime()-SHIFT;
-    int hour = dif / 3600; int minute = (dif - floor(hour)*3600)/60; int second = (dif - floor(hour)*3600 - floor(minute)*60);
-    String h,m,s;
-    hour = floor(hour); minute = floor(minute); second = floor(second);
-    
-    if (hour < 10){ h = "0"+hour;}
-    else{h = ""+hour;}
-    
-    if (minute < 10){ m = "0"+minute;}
-    else{m = ""+minute;}
-    
-    if (second < 10){ s = "0"+second;}
-    else{s = ""+second;}
-    return "School time: " + h + ":" + m + ":" + s;
-    
-}
+int sizeX, sizeY;
+int state = 0; // 0 = school countdown
+int m,h,s,result;
 
 void setup(){
-    size(window.innerWidth, window.innerHeight);
-    sizeX = window.innerWidth/2;
-    sizeY = window.innerHeight/2;
-    
+ // size(window.innerWidth,window.innerHeight);
+  size(800,600);
+  
+  sizeX = 800; sizeY = 600;
+  hoursEnd = new Timer(color(100,255,0),60,sizeX*0.2,sizeX*0.2,sizeY*0.5,"Hours");
+  minutesEnd = new Timer(color(255,100,0),60,sizeX*0.2,sizeX*0.5,sizeY*0.5,"Minutes"); //color(255,100,0)
+  secondsEnd = new Timer(color(0,100,255),100,sizeX*0.2,sizeX*0.8,sizeY*0.5,"Seconds");
+  school = new SchoolEnd();
 }
 
 void draw(){
-    background(255); 
-    textAlign(LEFT,TOP); fill(245); textLeading(10);
-    //text(txt,0,0,sizeX*8,sizeY*8);
-    background( c[minute()%4] );
+  background(30);
+  
+  
+  //Temp for now
+  if(state == 0){    //ScHOOL COUNTDOWN DEFAULT
+    Date now = new Date();
+    textAlign(CENTER,TOP); textSize(sizeX/50); fill(200);
+    text(now,sizeX/2,sizeY*0.73);
+    text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX/2,sizeY*0.75+sizeX/100);
     
-    stroke(0);
-    
-    fill(0); textSize(140); textAlign(CENTER,CENTER);
-    if (!(getTime() <= 14*3600+49*60+SHIFT && getTime() >= 7*3600+45*60+SHIFT)){
-        text("00:00:00",sizeX,sizeY*0.8);
-        textSize(40);
-        text("School is over!",sizeX,sizeY*1.1);
+    result = school.getTimeRemaining();
+    h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
+    hoursEnd.draw(m,h);
+    minutesEnd.draw(s,m);
+    secondsEnd.draw(now.getMilliseconds(),s);
+     
+    //DRAW PERCENT BAR
+    fill(20);
+    rect(sizeX*0.05,sizeY*0.68,sizeX*0.9,sizeY*0.01);
+    if (!(m == 0 && s == 0 && h==0)){ 
+      fill(255,50,0); textSize(sizeY*0.02); textAlign(LEFT,TOP);
+      rect(sizeX*0.05,sizeY*0.68,sizeX*0.9 * (school.getPercentDone()),sizeY*0.01);
+      text(int(school.getPercentDone()*100)+"%",sizeX*0.05 + sizeX*0.91,sizeY*0.675);
     }else{
-        text(subTime(),sizeX,sizeY*0.8);
-        textSize(40);
-        text("School is in session :C",sizeX,sizeY*1.1);
+      fill(255,50,0); textSize(sizeY*0.02); textAlign(LEFT,TOP);
+      rect(sizeX*0.05,sizeY*0.68,sizeX*0.9 ,sizeY*0.01);
+      text(int(100)+"%",sizeX*0.05 + sizeX*0.91,sizeY*0.675);
     }
-    text(getTime2(),sizeX,sizeY*1.2);
-    text(getTime3(),sizeX,sizeY*1.3);
-    textAlign(LEFT,TOP); textSize(20); fill(150);
-    text(new Date(),0,0);
-    text("Project by Lord Bowserinator.",0,20);
+  }
 }
+
+class Timer{
+  float total,r,x,y;
+  color c; String label;
+  Timer(color c1, float total1,float r1,float x1,float y1,String label1){
+    total = total1; c = c1; r = r1; x = x1; y = y1; label = label1;
+  }
+  
+  void draw(float time,float displayTime){
+    fill(50); noStroke();
+    ellipse(x,y,r,r);
+    if (displayTime > 0){
+      beginShape(); fill(c); 
+      for(float i=0;i<TWO_PI*(time/total);i+=0.01){
+        vertex(x + cos(i)*r*0.95/2, y + sin(i)*r*0.95/2);
+      }vertex(x,y);
+      endShape();
+    }
+    fill(40); ellipse(x,y,r*0.9,r*0.9);
+    
+    fill(255); textAlign(CENTER,CENTER);
+    String t; textSize(r*2/5);
+    if(displayTime < 10){t = "0"+int(displayTime);}
+    else{t= ""+int(displayTime);}
+    text(t,x,y); textSize(r*2/16);
+    text(label,x,y + r*0.25);
+  }
+}
+
+class SchoolEnd{
+  Day[] noschool = {new Day(9,7,5), new Day(9,14,5), new Day(9,23,5), new Day(10,12,5), new Day(11,5,5), new Day(11,6,5), new Day(11,26,5), new Day(11,27,5), new Day(12, 24,5),new Day(12, 25,5),new Day(12, 26,5),new Day(12, 27,5),new Day(12, 28,5),new Day(12, 29,5),new Day(12, 30,5),new Day(12, 31,5), new Day(1, 1,5),new Day(1, 2,5),new Day(1, 3,5),new Day(1, 4,5), new Day(1,18,5), new Day(2,15,5), new Day(2,16,5), new Day(4,11,5),new Day(4,12,5),new Day(4,13,5),new Day(4,14,5),new Day(4,15,5),new Day(5,30,5)};
+  Day[] singleday = {new Day(11,25,5), new Day(12,23,5),new Day(1,29,5), new Day(2,24,5), new Day(4,26,5)};
+  Day[] midterm = {new Day(2,1), new Day(2,2), new Day(2,3), new Day(2,4)};
+  const TIMESHIFT = 179;
+  
+  SchoolEnd(){
+    
+  }
+  
+  int getTime(){
+    return hour()*3600 + minute()*60 + second();
+  }
+  
+  float getPercentDone(){
+    int returned;
+    for(Day i:noschool){ if(i.month == month() && i.day == day()){ return 1;} }
+    
+    if(14*3600 + 49*60 + TIMESHIFT >= 7*3600 + 45*60 + TIMESHIFT && 14*3600 + 49*60 + TIMESHIFT <= 14*3600 + 49*60 + TIMESHIFT){
+      //Single days
+      for(Day i:singleday){ 
+        if(i.month == month() && i.day == day()){ 
+           returned = 12*3600 + 6*60 + TIMESHIFT - second() - minute()*60 -hour()*3600;
+           if(returned <= 0){return 1;}
+            return 1.0 - returned/(12*3600 + 6*60 - 7*3600 - 45*60);
+        }
+      }
+      //Midterm days
+      for(Day i:midterm){ 
+        if(i.month == month() && i.day == day()){ 
+           returned = 12*3600 + 30*60 + TIMESHIFT - second() - minute()*60 -hour()*3600;
+           if(returned <= 0){return 1;}
+           return 1.0 - returned/(12*3600 + 30*60 - 7*3600 - 45*60);
+        }
+      }
+      returned = 14*3600 + 49*60 + TIMESHIFT - second() - minute()*60 -hour()*3600;
+      if(returned <= 0){return 1;}
+      return 1.0 - returned/(14*3600 + 49*60 - 7*3600 - 45*60);
+    }
+    return 0;
+  }
+  
+  String schoolTime(){
+      int dif = getTime()-TIMESHIFT;
+      int hour = dif / 3600; int minute = (dif - floor(hour)*3600)/60; int second = (dif - floor(hour)*3600 - floor(minute)*60);
+      String h,m,s;
+      hour = floor(hour); minute = floor(minute); second = floor(second);
+      
+      if (hour < 10){ h = "0"+hour;}
+      else{h = ""+hour;}
+      
+      if (minute < 10){ m = "0"+minute;}
+      else{m = ""+minute;}
+      
+      if (second < 10){ s = "0"+second;}
+      else{s = ""+second;}
+      return  h + ":" + m + ":" + s;
+      
+  }
+  
+  int getTimeRemaining(){ //Returns remaining time seconds
+    //if day is saturday or sunday, return 0
+    //if day is summer ,spring rbeak or winter break return 0
+    //if day in no school return 0
+    int returned;
+    for(Day i:noschool){ if(i.month == month() && i.day == day()){ return 0;} }
+    
+    if(14*3600 + 49*60 + TIMESHIFT >= 7*3600 + 45*60 + TIMESHIFT && 14*3600 + 49*60 + TIMESHIFT <= 14*3600 + 49*60 + TIMESHIFT){
+      //Single days
+      for(Day i:singleday){ 
+        if(i.month == month() && i.day == day()){ 
+           returned = 12*3600 + 6*60 + TIMESHIFT - second() - minute()*60 -hour()*3600;
+           if(returned <= 0){return 0;}
+           return returned;
+        }
+      }
+      //Midterm days
+      for(Day i:midterm){ 
+        if(i.month == month() && i.day == day()){ 
+           returned = 12*3600 + 30*60 + TIMESHIFT - second() - minute()*60 -hour()*3600;
+           if(returned <= 0){return 0;}
+           return returned;
+        }
+      }
+      returned = 14*3600 + 49*60 + TIMESHIFT - second() - minute()*60 -hour()*3600;
+      if(returned <= 0){return 0;}
+      return returned;
+    }
+    return 0;
+ }
+
+}
+
+class Day{ //Type: 1 = A, 2 = B, ... 6 = half 7 = no school
+  int month, day, type; 
+  Day(int m,int d, int l){
+    month  = m; day = d; type = l;
+  }
+}
+String realTime(){
+  String returned;
+  String h,m,s;
+  
+  h = hour(); m = minute(); s = second();
+  if(hour()<10){h = "0" + hour();}
+  if(minute()<10){m = "0" + minute();}
+  if(second()<10){s = "0" + second();}
+  returned = h + ":"+ m + ":" + s;
+  return returned;
+}
+
+
+
