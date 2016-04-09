@@ -30,7 +30,7 @@ void draw(){
     textAlign(CENTER,TOP); textSize(sizeX/50); fill(200);
     text(now,sizeX/2,sizeY*0.73);
     text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX/2,sizeY*0.75+sizeX/100);
-    text("WORK IN PROGRESS!!!!",sizeX/2,sizeY*0.77);
+    text("WORK IN PROGRESS!!!!",sizeX/2,sizeY*0.9);
     
     result = school.getTimeRemaining();
     h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
