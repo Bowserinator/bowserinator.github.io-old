@@ -7,6 +7,7 @@ SchoolEnd school;
 int sizeX, sizeY;
 int state = 0; // 0 = school countdown
 int m,h,s,result;
+classroom classr;
 
 void setup(){
  // size(window.innerWidth,window.innerHeight);
@@ -14,10 +15,12 @@ void setup(){
   sizeX = window.innerWidth;
   sizeY = window.innerHeight;
   
-  hoursEnd = new Timer(color(100,255,0),60,sizeX*0.2,sizeX*0.2,sizeY*0.5,"Hours");
-  minutesEnd = new Timer(color(255,100,0),60,sizeX*0.2,sizeX*0.5,sizeY*0.5,"Minutes"); //color(255,100,0)
-  secondsEnd = new Timer(color(0,100,255),100,sizeX*0.2,sizeX*0.8,sizeY*0.5,"Seconds");
+  hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.15,sizeY*0.5,"Hours");
+  minutesEnd = new Timer(color(255,100,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Minutes"); //color(255,100,0)
+  secondsEnd = new Timer(color(0,100,255),1000,sizeX*0.18,sizeX*0.62,sizeY*0.5,"Seconds");
+  millisEnd = new Timer(color(255,255,0),100,sizeX*0.18,sizeX*0.85,sizeY*0.5,"Milliseconds");
   school = new SchoolEnd();
+  classr = new classroom();
 }
 
 void draw(){
@@ -27,29 +30,40 @@ void draw(){
   //Temp for now
   if(state == 0){    //ScHOOL COUNTDOWN DEFAULT
     Date now = new Date();
-    textAlign(CENTER,TOP); textSize(sizeX/50); fill(200);
+    textAlign(CENTER,TOP); 
+    textSize(sizeX/20); fill(200);
+    text("School Countdown Timer",sizeX/2,0);
+    
+    pushMatrix(); translate(0,-0.15*sizeY);
+    
+    textSize(sizeX/50); fill(200);
     text(now,sizeX/2,sizeY*0.77);
     text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX/2,sizeY*0.79+sizeX/100);
-    text("WORK IN PROGRESS!!!!",sizeX/2,sizeY*0.9);
+    text("Today is an " + classr.getDay() + " day.",sizeX/2,sizeY*0.9);
+    text("Today's block schedule is "+classr.getSchedule(),sizeX/2,sizeY*0.94);
+    text("Class time remaining [TIME].",sizeX/2,sizeY*0.98);
     
     result = school.getTimeRemaining();
     h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
     hoursEnd.draw(m,h);
     minutesEnd.draw(s,m);
     secondsEnd.draw(now.getMilliseconds(),s);
-     
+    if (result > 0){  millisEnd.draw(now.getMilliseconds(),1000-now.getMilliseconds()); }
+    else{  millisEnd.draw(now.getMilliseconds(),0); }
+    
     //DRAW PERCENT BAR
     fill(20);
     rect(sizeX*0.05,sizeY*0.755,sizeX*0.9,sizeY*0.01);
     if (!(m == 0 && s == 0 && h==0)){ 
-      fill(255,50,0); textSize(sizeY*0.02); textAlign(LEFT,TOP);
+      fill(255,50,0); textSize(sizeY*0.04);
       rect(sizeX*0.05,sizeY*0.755,sizeX*0.9 * (school.getPercentDone()),sizeY*0.01);
-      text(int(school.getPercentDone()*100)+"%",sizeX*0.05 + sizeX*0.91,sizeY*0.75);
+      text(int(school.getPercentDone()*100)+"%",sizeX*0.5,sizeY*0.73);
     }else{
-      fill(255,50,0); textSize(sizeY*0.02); textAlign(LEFT,TOP);
+      fill(255,50,0); textSize(sizeY*0.04);
       rect(sizeX*0.05,sizeY*0.755,sizeX*0.9 ,sizeY*0.01);
-      text(int(100)+"%",sizeX*0.05 + sizeX*0.91,sizeY*0.75);
+      text(int(100)+"%",sizeX*0.5,sizeY*0.73);
     }
+    popMatrix();
   }
 }
 
@@ -61,8 +75,10 @@ class Timer{
   }
   
   void draw(float time,float displayTime){
-    fill(50); noStroke();
+    noStroke(); fill(50);
     ellipse(x,y,r,r);
+    fill(25);
+    ellipse(x,y,r*0.95,r*0.95);
     if (displayTime > 0){
       beginShape(); fill(c); 
       for(float i=0;i<TWO_PI*(time/total);i+=0.01){
@@ -70,13 +86,15 @@ class Timer{
       }vertex(x,y);
       endShape();
     }
-    fill(40); ellipse(x,y,r*0.9,r*0.9);
+    fill(30);
+    ellipse(x,y,r*0.9,r*0.9);
     
     fill(255); textAlign(CENTER,CENTER);
     String t; textSize(r*2/5);
     if(displayTime < 10){t = "0"+int(displayTime);}
     else{t= ""+int(displayTime);}
     text(t,x,y); textSize(r*2/16);
+    fill(c);
     text(label,x,y + r*0.25);
   }
 }
@@ -190,4 +208,53 @@ String realTime(){
   if(second()<10){s = "0" + second();}
   returned = h + ":"+ m + ":" + s;
   return returned;
+}
+
+class classroom{
+    String days = {"1,2,3|6,7,8","2,3,4|8,5,6","3,4,1|8,5,6","4,1,2|5,6,7","1,2,3,4|5,6,7,8","1,2,3,4|5,6,7,8","EXAM,EXAM"}; 
+    //0 = A day, 1 = B day etc..5 = half day, 6 =midterm, 7 = PARCC?
+    String parcc_days = {"PARCC,1|2,5,6","PARCC,3|4,7,8","PARCC,2|1,5,6","PARCC,4|3,7,8",
+    "PARCC,1|2,5,6","PARCC,3|4,7,8","PARCC,1,2,3,4,5,6,7,8"}; //Parcc day schedule :(
+    String day_name = {"A","B","C","D","E","half day","midterm","modified"};
+    
+    //Day types: 0 = A, 5 = half day, 6= midterm, 7 = MODIFIED SCHEDULE
+    Day[] parcc = {new Day(4,19,7), new Day(4,20,7), new Day(4,21,7), new Day(4,22,7), new Day(4,27,7), new Day(4,28,7), new Day(4,29,7)};
+    Day[] exceptions = {new Day(9,8,4), new Day(9,10,4), new Day(9,11,4), new Day(9,18,0), new Day(9,25,0), new Day(10,14,7), new Day(10,15,7),
+    new Day(10,16,0), new Day(11,2,4), new Day(11,3,4), new Day(11,4,4), new Day(12,21,4), new Day(12,22,4),
+    new Day(1,22,0), new Day(2,17,4),new Day(2,18,4),new Day(2,19,4), 
+    new Day(4,19,7), new Day(4,20,7), new Day(4,21,7), new Day(4,22,7), new Day(4,25,4), new Day(4,26,4),
+    new Day(4,27,7), new Day(4,28,7), new Day(4,29,7), new Day(5,16,7),  new Day(5,17,7),  new Day(5,18,7),
+    new Day(6,3,0), new Day(6,13,4), new Day(6,14,4), new Day(6,15,4), new Day(6,16,4), new Day(6,17,4), 
+    //Single session new Days
+    new Day(11,25,5), new Day(12,23,5), new Day(1,29,5), new Day(2,24,5),
+    //Midterms
+    new Day(2,1,6), new Day(2,2,6), new Day(2,3,6), new Day(2,4,6),
+    };
+    
+    Day[] noschool = {new Day(9,7,5), new Day(9,14,5), new Day(9,23,5), new Day(10,12,5), new Day(11,5,5), new Day(11,6,5), new Day(11,26,5), new Day(11,27,5), new Day(12, 24,5),new Day(12, 25,5),new Day(12, 26,5),new Day(12, 27,5),new Day(12, 28,5),new Day(12, 29,5),new Day(12, 30,5),new Day(12, 31,5), new Day(1, 1,5),new Day(1, 2,5),new Day(1, 3,5),new Day(1, 4,5), new Day(1,18,5), new Day(2,15,5), new Day(2,16,5), new Day(4,11,5),new Day(4,12,5),new Day(4,13,5),new Day(4,14,5),new Day(4,15,5),new Day(5,30,5)};
+    
+    classroom(){
+    }
+    
+    String getSchedule(){
+        for(Day i:noschool){if (month() == i.month && day() == i.day) {return "non-existant as there is no school.";}}
+        int start=0;
+        for(Day i:parcc){if (month() == i.month && day() == i.day) { return parcc_days[start];}start++;}
+        for(Day i:exceptions){if (month() == i.month && day() == i.day) {return days[i.type];}}
+        if(new Date().getDay()-1 == 0 || new Date().getDay()-1==6){return "like whatever you do on break.";}
+        return days[new Date().getDay()-1];
+    }
+    
+    String getDay(){
+        for(Day i:noschool){if (month() == i.month && day() == i.day) {return "no school";}}
+        int start=0;
+        for(Day i:parcc){if (month() == i.month && day() == i.day) {return "PARCC";}start++;}
+        for(Day i:exceptions){if (month() == i.month && day() == i.day) {return day_name[i.type];}}
+        if(new Date().getDay()-1 == 0 || new Date().getDay()-1==6){return "weekend";}
+        return day_name[new Date().getDay()-1];
+    }
+    
+    String timeTillClass(){
+        //If time between classes write time till class starts!
+    }
 }
