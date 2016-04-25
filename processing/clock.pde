@@ -233,6 +233,15 @@ class classroom{
     
     Day[] noschool = {new Day(9,7,5), new Day(9,14,5), new Day(9,23,5), new Day(10,12,5), new Day(11,5,5), new Day(11,6,5), new Day(11,26,5), new Day(11,27,5), new Day(12, 24,5),new Day(12, 25,5),new Day(12, 26,5),new Day(12, 27,5),new Day(12, 28,5),new Day(12, 29,5),new Day(12, 30,5),new Day(12, 31,5), new Day(1, 1,5),new Day(1, 2,5),new Day(1, 3,5),new Day(1, 4,5), new Day(1,18,5), new Day(2,15,5), new Day(2,16,5), new Day(4,11,5),new Day(4,12,5),new Day(4,13,5),new Day(4,14,5),new Day(4,15,5),new Day(5,30,5)};
     
+    //Yay finally school times
+    ClassTime[][] classes = { 
+        {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //A days
+        {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //B days
+        {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //C days
+        {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //D days
+        
+    };
+    
     classroom(){
     }
     
@@ -241,7 +250,7 @@ class classroom{
         int start=0;
         for(Day i:parcc){if (month() == i.month && day() == i.day) { return parcc_days[start];}start++;}
         for(Day i:exceptions){if (month() == i.month && day() == i.day) {return days[i.type];}}
-        if(new Date().getDay()-1 == 0 || new Date().getDay()-1==6){return "like whatever you do on break.";}
+        if(new Date().getDay() == 0 || new Date().getDay()==6){return "like whatever you do on break.";}
         return days[new Date().getDay()-1];
     }
     
@@ -250,11 +259,19 @@ class classroom{
         int start=0;
         for(Day i:parcc){if (month() == i.month && day() == i.day) {return "PARCC";}start++;}
         for(Day i:exceptions){if (month() == i.month && day() == i.day) {return day_name[i.type];}}
-        if(new Date().getDay()-1 == 0 || new Date().getDay()-1==6){return "weekend";}
+        if(new Date().getDay() == 0 || new Date().getDay()==6){return "weekend";}
         return day_name[new Date().getDay()-1];
     }
     
     String timeTillClass(){
         //If time between classes write time till class starts!
+    }
+}
+
+//Sigh class times are a pain :(
+class ClassTime{
+    float[][] times; //Array of array of times class start and end in seconds from 12:00 AM
+    ClassTime(float[][] time){
+        times = time;
     }
 }
