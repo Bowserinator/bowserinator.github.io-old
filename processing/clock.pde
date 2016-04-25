@@ -39,7 +39,7 @@ void draw(){
     textSize(sizeX/50); fill(200);
     text(now,sizeX/2,sizeY*0.77);
     text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX/2,sizeY*0.79+sizeX/100);
-    text("Today is an " + classr.getDay() + " day and the schedule is "+classr.getSchedule(),sizeX/2,sizeY*0.9);
+    text("Today is an " + classr.getDay() + " day and the schedule is "+classr.getSchedule(),sizeX/2,sizeY*0.79+sizeX/50);
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
     text("Class time remaining [TIME].",sizeX/2,sizeY*0.98);
     
