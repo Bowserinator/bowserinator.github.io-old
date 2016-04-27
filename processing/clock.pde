@@ -41,7 +41,8 @@ void draw(){
     text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX/2,sizeY*0.79+sizeX/100);
     text("Today is an " + classr.getDay() + " day and the schedule is "+classr.getSchedule(),sizeX/2,sizeY*0.85);
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
-    text("Class time remaining [TIME].",sizeX/2,sizeY*0.98);
+    textSize(sizeX/30);
+    text("Class till class starts/ends: " + classr.timeTillClass(school) ,sizeX/2,sizeY*0.98);
     
     result = school.getTimeRemaining();
     h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
@@ -239,11 +240,22 @@ class classroom{
         {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //B days
         {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //C days
         {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //D days
-        
+        {new ClassTime({27900, 30200}), new ClassTime({30720,33300}), new ClassTime({33540,36120}), new ClassTime({36360,38940}), new ClassTime({38940,42300}), new ClassTime({42300,44880}), new ClassTime({45120,47700}), new ClassTime({47940,50520}), new ClassTime({50760,53340}) }, //E day
+        {new ClassTime({27900, 29700}), new ClassTime({29880,31680}), new ClassTime({31860,33660}), new ClassTime({33840,35640}), new ClassTime({35820,34020}), new ClassTime({34200,39600}), new ClassTime({39780,41580}), new ClassTime({41760,43560}) }, //Half day
+        {new ClassTime({28800, 36000}), new ClassTime({37800,45000}) } //Midterm days lol
     };
+    
+    ClassTime[] parcc_day_1 = {new ClassTime({27900,35100}), new ClassTime({37800,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) };
+    Day special_parcc = new Day(4,29); //The one parcc day with periods 1-8
+    ClassTime[] parcc_day_2 = {};
+    
+    //Fuck u processing
+    Day[] singleday = {new Day(11,25,5), new Day(12,23,5),new Day(1,29,5), new Day(2,24,5)};
+    Day[] midterm = {new Day(2,1), new Day(2,2), new Day(2,3), new Day(2,4)};
     
     classroom(){
     }
+
     
     String getSchedule(){
         for(Day i:noschool){if (month() == i.month && day() == i.day) {return "non-existant as there is no school.";}}
@@ -263,8 +275,75 @@ class classroom{
         return day_name[new Date().getDay()-1];
     }
     
-    String timeTillClass(){
+    int timeTillClass(SchoolEnd e){ //Lies, it actually returns String lolololololololol
         //If time between classes write time till class starts!
+        int timeLeft = e.getTimeRemaining();
+        if (timeLeft <= 0){ return "00:00:00";} //If time till school ends is 0 return 0
+        if(new Date().getDay() == 0 || new Date().getDay()==6){return "00:00:00";} //Weekends = 0
+      
+        int i=0;
+        for(Day x:singleday){ if(x.month == month() && x.day == day()){ i = 5;}}
+        for(Day x:midterm){ if(x.month == month() && x.day == day()){ i = 6;}}
+        for(Day x:parcc){ if (month() == x.month && day() == x.day) {i=-1;}}
+                        
+        if(i==0){
+          i = new Date().getDay()-1; //Get a,b, ... days based on day of week
+        }
+        
+        if (i>=0){
+          for(ClassTime c: classes[i]){ //Iterate through classes of the day
+            int current = hour()*3600 + minute()*60 + second() - e.TIMESHIFT;
+            if (c.times[0] <= current && current <= c.times[1]){ return timeLeftToStr(c.times[1] - current);} //Get time till class ends
+          }
+            
+          //No class matches, return time till class starts
+          int timePossible = 99999999;
+          for(ClassTime c: classes[i]){ //Iterate through classes of the day
+            int current = hour()*3600 + minute()*60 + second() - e.TIMESHIFT;
+            if (c.times[0] >= current){ 
+              if(c.times[0] - current < timePossible){ timePossible = c.times[0] - current; }
+            } //Get time till class ends
+          }return timeLeftToStr(timePossible);
+        }
+        
+        //It's a parcc day, use special schedule!
+        if( month() == special_parcc.month && day() == special_parcc.day){ //PARcc day with periods 1-8
+          return "CLASSES HAVE NO YET BEEN IMPLEMENTED FOR TODAY";
+        }else{
+          for(ClassTime c: parcc_day_1){ //Iterate through classes of the day
+            int current = hour()*3600 + minute()*60 + second() - e.TIMESHIFT;
+            if (c.times[0] <= current && current <= c.times[1]){ return timeLeftToStr(c.times[1] - current);} //Get time till class ends
+          }
+          
+          //No class matches, return time till class starts
+          int timePossible = 99999999;
+          for(ClassTime c: parcc_day_1){ //Iterate through classes of the day
+            int current = hour()*3600 + minute()*60 + second() - e.TIMESHIFT;
+            if (c.times[0] >= current){ 
+              if(c.times[0] - current < timePossible){ timePossible = c.times[0] - current; }
+            } //Get time till class ends
+          }return timeLeftToStr(timePossible);
+        }
+    }
+    
+    String timeLeftToStr(int x){
+      int h = floor(x/3600);
+      int m = floor((x - h*3600)/60);
+      int s = x - h*3600 - m*60;
+      returned = "";
+
+      if(h<10){ returned = returned + "0"+String(h);} 
+      else{ returned = returned + String(h);} 
+      
+      returned = returned + ":";
+      
+      if(m<10){ returned = returned + "0"+String(m);} 
+      else{ returned = returned + String(m);} 
+      returned = returned + ":";
+      
+      if(s<10){ returned = returned + "0"+String(s);} 
+      else{ returned = returned +String(s);} 
+      return returned;
     }
 }
 
