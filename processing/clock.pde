@@ -44,7 +44,7 @@ void draw(){
     text("Today is an " + classr.getDay() + " day and the schedule is "+classr.getSchedule(),sizeX/2,sizeY*0.85);
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
     textSize(sizeX/30);
-    text("Class till class starts/ends: " + classr.timeTillClass(school) ,sizeX/2,sizeY*0.98);
+    text("Time till class starts/ends: " + classr.timeTillClass(school) ,sizeX/2,sizeY*0.98);
     
     result = school.getTimeRemaining();
     h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
