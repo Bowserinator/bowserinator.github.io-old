@@ -33,6 +33,8 @@ void draw(){
     textAlign(CENTER,TOP); 
     textSize(sizeX/20); fill(200);
     text("School Countdown Timer",sizeX/2,0);
+    textSize(sizeX/50); 
+    text("(Times are only accurate within 10 seconds)",sizeX/2,sizeX/20);
     
     pushMatrix(); translate(0,-0.15*sizeY);
     
