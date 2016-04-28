@@ -43,8 +43,8 @@ void draw(){
     text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX/2,sizeY*0.79+sizeX/100);
     text("Today is an " + classr.getDay() + " day and the schedule is "+classr.getSchedule(),sizeX/2,sizeY*0.85);
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
-    textSize(sizeX/30);
-    text("Time till class starts/ends: " + classr.timeTillClass(school) ,sizeX/2,sizeY*0.98);
+    textSize(sizeX/30); fill(255);
+    text("Time till class starts/ends: " + classr.timeTillClass(school) ,sizeX/2,sizeY*0.9);
     
     result = school.getTimeRemaining();
     h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
@@ -249,7 +249,7 @@ class classroom{
     
     ClassTime[] parcc_day_1 = {new ClassTime({27900,35100}), new ClassTime({37800,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) };
     Day special_parcc = new Day(4,29); //The one parcc day with periods 1-8
-    ClassTime[] parcc_day_2 = {};
+    ClassTime[] parcc_day_2 = {new ClassTime({27900,35100}), new ClassTime({35100,36840}), new ClassTime({37020,38760}), new ClassTime({38760,42000}), new ClassTime({42000,43740}), new ClassTime({43920,45660}), new ClassTime({45840,47580}), new ClassTime({47760,49500}), new ClassTime({49680,51420}), new ClassTime({51600,53340})  };
     
     //Fuck u processing
     Day[] singleday = {new Day(11,25,5), new Day(12,23,5),new Day(1,29,5), new Day(2,24,5)};
@@ -277,7 +277,7 @@ class classroom{
         return day_name[new Date().getDay()-1];
     }
     
-    int timeTillClass(SchoolEnd e){ //Lies, it actually returns String lolololololololol
+    int timeTillClass(SchoolEnd e){ //It actually returns String lolololololololol epic programming
         //If time between classes write time till class starts!
         int timeLeft = e.getTimeRemaining();
         if (timeLeft <= 0){ return "00:00:00";} //If time till school ends is 0 return 0
@@ -310,7 +310,20 @@ class classroom{
         
         //It's a parcc day, use special schedule!
         if( month() == special_parcc.month && day() == special_parcc.day){ //PARcc day with periods 1-8
-          return "CLASSES HAVE NO YET BEEN IMPLEMENTED FOR TODAY";
+          for(ClassTime c: parcc_day_2){ //Iterate through classes of the day
+            int current = hour()*3600 + minute()*60 + second() - e.TIMESHIFT;
+            if (c.times[0] <= current && current <= c.times[1]){ return timeLeftToStr(c.times[1] - current);} //Get time till class ends
+          }
+          
+          //No class matches, return time till class starts
+          int timePossible = 99999999;
+          for(ClassTime c: parcc_day_2){ //Iterate through classes of the day
+            int current = hour()*3600 + minute()*60 + second() - e.TIMESHIFT;
+            if (c.times[0] >= current){ 
+              if(c.times[0] - current < timePossible){ timePossible = c.times[0] - current; }
+            } //Get time till class ends
+          }return timeLeftToStr(timePossible);
+          
         }else{
           for(ClassTime c: parcc_day_1){ //Iterate through classes of the day
             int current = hour()*3600 + minute()*60 + second() - e.TIMESHIFT;
