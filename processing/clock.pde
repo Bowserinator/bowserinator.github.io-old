@@ -287,6 +287,7 @@ class classroom{
         for(Day x:singleday){ if(x.month == month() && x.day == day()){ i = 5;}}
         for(Day x:midterm){ if(x.month == month() && x.day == day()){ i = 6;}}
         for(Day x:parcc){ if (month() == x.month && day() == x.day) {i=-1;}}
+        if( month() == special_parcc.month && day() == special_parcc.day){ i=-1;}
                         
         if(i==0){
           i = new Date().getDay()-1; //Get a,b, ... days based on day of week
