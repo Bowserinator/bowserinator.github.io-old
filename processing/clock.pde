@@ -214,7 +214,7 @@ String realTime(){
 }
 
 class classroom{
-    String days = {"1,2,3|6,7,8","2,3,4|8,5,6","3,4,1|8,5,6","4,1,2|5,6,7","1,2,3,4|5,6,7,8","1,2,3,4|5,6,7,8","EXAM,EXAM"}; 
+    String days = {"1,2,3|6,7,8","2,3,4|7,8,5","3,4,1|8,5,6","4,1,2|5,6,7","1,2,3,4|5,6,7,8","1,2,3,4|5,6,7,8","EXAM,EXAM"}; 
     //0 = A day, 1 = B day etc..5 = half day, 6 =midterm, 7 = PARCC?
     String parcc_days = {"PARCC,1|2,5,6","PARCC,3|4,7,8","PARCC,2|1,5,6","PARCC,4|3,7,8",
     "PARCC,1|2,5,6","PARCC,3|4,7,8","PARCC,1,2,3,4,5,6,7,8"}; //Parcc day schedule :(
