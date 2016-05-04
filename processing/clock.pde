@@ -41,7 +41,7 @@ void draw(){
     textSize(sizeX/20); fill(200);
     text("School Countdown Timer",sizeX/2,0);
     textSize(sizeX/50); 
-    text("Times only accurate within 10 seconds | Thank you Mr. Lucas for using this",sizeX/2,sizeX/20);
+    text("If everyone believes it, does that make it true?",sizeX/2,sizeX/20);
     
     pushMatrix(); translate(0,-0.15*sizeY);
     
