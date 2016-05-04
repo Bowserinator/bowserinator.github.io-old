@@ -58,9 +58,9 @@ void draw(){
 
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
     textSize(sizeX/10); fill(255);
-    text(classr.timeTillClass(school), sizeX*0.67,sizeY*0.75);
+    text(classr.timeTillClass(school), sizeX*0.57,sizeY*0.73);
     textSize(sizeX/40);
-    text("Time till class ends or starts.", sizeX*0.67,sizeY*0.75 + sizeX/10);
+    text("Time till class ends or starts.", sizeX*0.57,sizeY*0.73 + sizeX/10);
     
     //textSize(sizeX/30); fill(255);
     //text("Time till class starts/ends: " + classr.timeTillClass(school) ,sizeX/2,sizeY*0.9);
