@@ -47,9 +47,10 @@ void draw(){
     
     textSize(sizeX/50); fill(200); textAlign(LEFT,TOP);
     text("Current date: " + months[month()-1] + " " + day() + " " + year(), sizeX * 0.05, sizeY*0.77); 
-    text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX*0.05,sizeY*0.81);
-    text("Today is a(n) " + classr.getDay() + " day.",sizeX*0.05,sizeY*0.85);
-    text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.89);
+    text("Real time: "+realTime() ,sizeX*0.05,sizeY*0.81);
+    text("School Time: " + school.schoolTime(),sizeX*0.05,sizeY*0.85);
+    text("Today is a(n) " + classr.getDay() + " day.",sizeX*0.05,sizeY*0.89);
+    text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.93);
     
     fill(150);
     text("(App coming soon! Hang tight! Wallpaper will be edited later)",sizeX*0.05,sizeY*1.05);
