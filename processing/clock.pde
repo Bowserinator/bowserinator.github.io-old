@@ -29,7 +29,7 @@ void setup(){
 }
 
 void draw(){
-  //background(back); //30
+  background(50); //30
   image(back,0,0,window.innerWidth,window.innerHeight);
   noStroke(); fill(0,0,0,200);
   rect(0,0,window.innerWidth,window.innerHeight);
@@ -41,7 +41,7 @@ void draw(){
     textSize(sizeX/20); fill(200);
     text("School Countdown Timer",sizeX/2,0);
     textSize(sizeX/50); 
-    text("(Times are only accurate within 10 seconds)",sizeX/2,sizeX/20);
+    text("Times only accurate within 10 seconds | Thank you Mr. Lucas for using this",sizeX/2,sizeX/20);
     
     pushMatrix(); translate(0,-0.15*sizeY);
     
