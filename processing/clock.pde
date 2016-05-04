@@ -1,5 +1,6 @@
 //WIP
 //Add custom selection for day
+/* @pjs preload="https://www.walldevil.com/wallpapers/a54/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"; */
 
 Timer hoursEnd, minutesEnd, secondsEnd;
 SchoolEnd school;
@@ -8,6 +9,8 @@ int sizeX, sizeY;
 int state = 0; // 0 = school countdown
 int m,h,s,result;
 classroom classr;
+PImage back;
+String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 
 void setup(){
  // size(window.innerWidth,window.innerHeight);
@@ -15,17 +18,21 @@ void setup(){
   sizeX = window.innerWidth;
   sizeY = window.innerHeight;
   
+  back = requestImage("https://www.walldevil.com/wallpapers/a54/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
   hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.15,sizeY*0.5,"Hours");
   minutesEnd = new Timer(color(255,100,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Minutes"); //color(255,100,0)
   secondsEnd = new Timer(color(0,100,255),1000,sizeX*0.18,sizeX*0.62,sizeY*0.5,"Seconds");
   millisEnd = new Timer(color(255,255,0),100,sizeX*0.18,sizeX*0.85,sizeY*0.5,"Milliseconds");
   school = new SchoolEnd();
   classr = new classroom();
+  frameRate(1000);
 }
 
 void draw(){
-  background(30);
-  
+  //background(back); //30
+  image(back,0,0,window.innerWidth,window.innerHeight);
+  noStroke(); fill(0,0,0,200);
+  rect(0,0,window.innerWidth,window.innerHeight);
   
   //Temp for now
   if(state == 0){    //ScHOOL COUNTDOWN DEFAULT
@@ -38,13 +45,24 @@ void draw(){
     
     pushMatrix(); translate(0,-0.15*sizeY);
     
-    textSize(sizeX/50); fill(200);
-    text(now,sizeX/2,sizeY*0.77);
-    text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX/2,sizeY*0.79+sizeX/100);
-    text("Today is an " + classr.getDay() + " day and the schedule is "+classr.getSchedule(),sizeX/2,sizeY*0.85);
+    textSize(sizeX/50); fill(200); textAlign(LEFT,TOP);
+    text("Current date: " + months[month()-1] + " " + day() + " " + year(), sizeX * 0.05, sizeY*0.77); 
+    text("Real time: "+realTime() + "  School Time: " + school.schoolTime(),sizeX*0.05,sizeY*0.81);
+    text("Today is a(n) " + classr.getDay() + " day.",sizeX*0.05,sizeY*0.85);
+    text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.89);
+    
+    fill(150);
+    text("(App coming soon! Hang tight! Wallpaper will be edited later)",sizeX*0.05,sizeY*1.05);
+    textAlign(CENTER,TOP); 
+
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
-    textSize(sizeX/30); fill(255);
-    text("Time till class starts/ends: " + classr.timeTillClass(school) ,sizeX/2,sizeY*0.9);
+    textSize(sizeX/10); fill(255);
+    text(classr.timeTillClass(school), sizeX*0.67,sizeY*0.75);
+    textSize(sizeX/40);
+    text("Time till class ends or starts.", sizeX*0.67,sizeY*0.75 + sizeX/10);
+    
+    //textSize(sizeX/30); fill(255);
+    //text("Time till class starts/ends: " + classr.timeTillClass(school) ,sizeX/2,sizeY*0.9);
     
     result = school.getTimeRemaining();
     h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
@@ -56,15 +74,15 @@ void draw(){
     
     //DRAW PERCENT BAR
     fill(20);
-    rect(sizeX*0.05,sizeY*0.755,sizeX*0.9,sizeY*0.01);
+    rect(sizeX*0.05,sizeY*0.715,sizeX*0.9,sizeY*0.01);
     if (!(m == 0 && s == 0 && h==0)){ 
       fill(255,50,0); textSize(sizeY*0.04);
-      rect(sizeX*0.05,sizeY*0.755,sizeX*0.9 * (school.getPercentDone()),sizeY*0.01);
-      text(int(school.getPercentDone()*100)+"%",sizeX*0.5,sizeY*0.73);
+      rect(sizeX*0.05,sizeY*0.715,sizeX*0.9 * (school.getPercentDone()),sizeY*0.01);
+      text(int(school.getPercentDone()*100)+"%",sizeX*0.5,sizeY*0.69);
     }else{
       fill(255,50,0); textSize(sizeY*0.04);
-      rect(sizeX*0.05,sizeY*0.755,sizeX*0.9 ,sizeY*0.01);
-      text(int(100)+"%",sizeX*0.5,sizeY*0.73);
+      rect(sizeX*0.05,sizeY*0.715,sizeX*0.9 ,sizeY*0.01);
+      text(int(100)+"%",sizeX*0.5,sizeY*0.69);
     }
     popMatrix();
   }
@@ -77,21 +95,48 @@ class Timer{
     total = total1; c = c1; r = r1; x = x1; y = y1; label = label1;
   }
   
+  void drawRing(int x, int y, float w1, float w2, int segments){
+    float deltaA=(1.0/(float)segments)*TWO_PI;
+    beginShape(QUADS);
+    for(int i=0;i<segments;i++)
+    {
+      vertex(x+w1*cos(i*deltaA),y+w1*sin(i*deltaA));
+      vertex(x+w2*cos(i*deltaA),y+w2*sin(i*deltaA));
+      vertex(x+w2*cos((i+1)*deltaA),y+w2*sin((i+1)*deltaA));
+      vertex(x+w1*cos((i+1)*deltaA),y+w1*sin((i+1)*deltaA));
+    }
+    endShape();
+  } 
+  
+  void drawRingFract(int x, int y, float w1, float w2, int segments, float percent){
+    float deltaA=(1.0/(float)segments)*TWO_PI*percent;
+    beginShape(QUADS);
+    for(int i=0;i<segments;i++)
+    {
+      vertex(x+w1*cos(i*deltaA),y+w1*sin(i*deltaA));
+      vertex(x+w2*cos(i*deltaA),y+w2*sin(i*deltaA));
+      vertex(x+w2*cos((i+1)*deltaA),y+w2*sin((i+1)*deltaA));
+      vertex(x+w1*cos((i+1)*deltaA),y+w1*sin((i+1)*deltaA));
+    }
+    endShape();
+  } 
+  
   void draw(float time,float displayTime){
     noStroke(); fill(50);
-    ellipse(x,y,r,r);
+    drawRing(x,y,r/2.0,r*0.95/2,50);             //ellipse(x,y,r,r);
     fill(25);
-    ellipse(x,y,r*0.95,r*0.95);
+    drawRing(x,y,r*0.95/2,r*0.43,50);                    //ellipse(x,y,r*0.95,r*0.95);
+    
     if (displayTime > 0){
-      beginShape(); fill(c); 
+      fill(c); drawRingFract(x,y,r*0.45,r*0.43,100,(time/total));
+      /*beginShape(); fill(c); 
       for(float i=0;i<TWO_PI*(time/total);i+=0.01){
         vertex(x + cos(i)*r*0.95/2, y + sin(i)*r*0.95/2);
       }vertex(x,y);
-      endShape();
+      endShape();*/
     }
     fill(30);
-    ellipse(x,y,r*0.9,r*0.9);
-    
+    drawRing(x,y,r*0.43,r*0.41,50);            //ellipse(x,y,r*0.9,r*0.9);
     fill(255); textAlign(CENTER,CENTER);
     String t; textSize(r*2/5);
     if(displayTime < 10){t = "0"+int(displayTime);}
