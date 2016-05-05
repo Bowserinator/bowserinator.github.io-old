@@ -24,7 +24,7 @@ String[] quotes = {
   "Roses are Red Violets are Blue In Soviet Russia Poem writes YOU!!",
   "A dog is wiser than a woman; it does not bark at its master.",
   "Perhaps it's impossible to wear an identity without becoming what you pretend to be.",
-  "Roses are red/Violets are blue/Don't you have anything/Better to do?",
+  "Roses are red/ Violets are blue/ Don't you have anything / Better to do?",
   "I find your lack of faith disturbing.",
   "One day, somewhere in the future, my work will be quoted!",
   "War is Peace | Freedom is Slavery | Ignorance is strength",
