@@ -112,7 +112,7 @@ void setup(){
   millisEnd = new Timer(color(255,255,0),100,sizeX*0.18,sizeX*0.85,sizeY*0.5,"Milliseconds");
   school = new SchoolEnd();
   classr = new classroom();
-  frameRate(1000);
+  frameRate(100);
 }
 
 void draw(){
