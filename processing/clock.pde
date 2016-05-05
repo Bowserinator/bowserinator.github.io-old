@@ -19,7 +19,7 @@ String[] quotes = {
   "Reading the source is cheating!",
   "90% bug free! Promise!",
   "How do you play a game against an omniscient opponent?",
-  "An intresting game. The only winning move is not to play.",
+  "An interesting game. The only winning move is not to play.",
   "Despite goodwill, human intimacy cannot occur without substantial mutual harm.",
   "Roses are Red Violets are Blue In Soviet Russia Poem writes YOU!!",
   "A dog is wiser than a woman; it does not bark at its master.",
