@@ -11,6 +11,29 @@ int m,h,s,result;
 classroom classr;
 PImage back;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
+String[] quotes = {
+  "If everyone believes it, does that make it true?",
+  "I can use this to spread propoganda.",
+  "Big brother is watching you.",
+  "Now I am become death, the destroyer of worlds.",
+  "Reading the source is cheating!",
+  "90% bug free! Promise!",
+  "How do you play a game against an omniscient opponent?",
+  "An intresting game. The only winning move is not to play.",
+  "Despite goodwill, human intimacy cannot occur without substantial mutual harm.",
+  "Roses are Red Violets are Blue In Soviet Russia Poem writes YOU!!",
+  "A dog is wiser than a woman; it does not bark at its master.",
+  "Perhaps it's impossible to wear an identity without becoming what you pretend to be.",
+  "Roses are red/Violets are blue/Don't you have anything/Better to do?",
+  "I find your lack of faith disturbing.",
+  "One day, somewhere in the future, my work will be quoted!",
+  "War is Peace | Freedom is Slavery | Ignorance is strength",
+  "100% accurate (Assuming relative time)",
+  "Knowledge is power, and power corrupts. Does knowledge corrupt?",
+  "Share this with your friends!",
+  "Like us on facebook!"
+};
+String rand_quote = quotes[round(random(0,quotes.length-1))];
 
 void setup(){
  // size(window.innerWidth,window.innerHeight);
@@ -41,7 +64,7 @@ void draw(){
     textSize(sizeX/20); fill(200);
     text("School Countdown Timer",sizeX/2,0);
     textSize(sizeX/50); 
-    text("If everyone believes it, does that make it true?",sizeX/2,sizeX/20);
+    text("\""+rand_quote+"\"",sizeX/2,sizeX/20);
     
     pushMatrix(); translate(0,-0.15*sizeY);
     
