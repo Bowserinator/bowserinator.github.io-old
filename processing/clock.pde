@@ -15,7 +15,7 @@ String[] quotes = {
   "If everyone believes it, does that make it true?",
   "I can use this to spread propoganda.",
   "Big brother is watching you.",
-  "Now I am become death, the destroyer of worlds.",
+  "Now I have become death, the destroyer of worlds.",
   "Reading the source is cheating!",
   "90% bug free! Promise!",
   "How do you play a game against an omniscient opponent?",
