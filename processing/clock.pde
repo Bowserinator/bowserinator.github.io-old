@@ -12,6 +12,7 @@ classroom classr;
 PImage back;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 String[][] quotes = {
+  {"The numbers, Mason! What do they mean?","Jason Hudson, Call of Duty"},
   {"Sometimes a majority simply means that all the fools are on the same side.","Claude C. McDonald"},
   {"If everyone believes it, does that make it true?","Winston, 1984 by George Orwell"},
   {"I can use this to spread propoganda.","You'll probably believe most of these quotes."},
