@@ -22,7 +22,6 @@ String[][] quotes = {
   {"An interesting game. The only winning move is not to play.","NORAD, WarGames"},
   {"Despite goodwill, human intimacy cannot occur without substantial mutual harm.","A logical paradox"},
   {"Roses are Red Violets are Blue In Soviet Russia Poem writes YOU!!","A Russian reversal joke"},
-  {"A dog is wiser than a woman; it does not bark at its master.","German adage"},
   {"Perhaps it's impossible to wear an identity without becoming what you pretend to be.","Valentine, Ender's Game by Orson Scott Card"},
   {"Roses are red | Violets are blue | Don't you have anything | Better to do?","A humorous twist on the classic poem."},
   {"I find your lack of faith disturbing.","Lord Vader, Star Wars IV - A New Hope"},
