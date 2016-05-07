@@ -12,6 +12,8 @@ classroom classr;
 PImage back;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 String[][] quotes = {
+  {"Make it idiot proof and someone will make a better idiot.","Some guy online somewhere"},
+  {"He was too busy asking if he could, he didn't stop to ask if he should.","Some guy online somewhere"},
   {"The numbers, Mason! What do they mean?","Jason Hudson, Call of Duty"},
   {"Sometimes a majority simply means that all the fools are on the same side.","Claude C. McDonald"},
   {"If everyone believes it, does that make it true?","Winston, 1984 by George Orwell"},
