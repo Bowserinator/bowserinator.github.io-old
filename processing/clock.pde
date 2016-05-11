@@ -161,7 +161,7 @@ void draw(){
     h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
     hoursEnd.draw(m,h);
     minutesEnd.draw(s,m);
-    secondsEnd.draw(now.getMilliseconds(),s);
+    secondsEnd.draw(1000-now.getMilliseconds(),s);
     if (result > 0){  millisEnd.draw(now.getMilliseconds(),1000-now.getMilliseconds()); }
     else{  millisEnd.draw(now.getMilliseconds(),0); }
     
