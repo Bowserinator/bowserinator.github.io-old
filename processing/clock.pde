@@ -1,6 +1,6 @@
 //WIP
 //Add custom selection for day
-/* @pjs preload="https://sites.google.com/site/bowserinator/github/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"; */
+/* @pjs preload="https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"; */
 
 Timer hoursEnd, minutesEnd, secondsEnd;
 SchoolEnd school;
@@ -108,11 +108,12 @@ void setup(){
   sizeX = window.innerWidth;
   sizeY = window.innerHeight;
   
-  back = requestImage("https://sites.google.com/site/bowserinator/github/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
+  back = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
   hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.15,sizeY*0.5,"Hours");
   minutesEnd = new Timer(color(255,100,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Minutes"); //color(255,100,0)
   secondsEnd = new Timer(color(0,100,255),1000,sizeX*0.18,sizeX*0.62,sizeY*0.5,"Seconds");
-  millisEnd = new Timer(color(255,255,0),100,sizeX*0.18,sizeX*0.85,sizeY*0.5,"Milliseconds");
+  millisEnd = new Timer(color(255,255,0),1000,sizeX*0.18,sizeX*0.85,sizeY*0.5,"Milliseconds");
+  //15,38,62,8
   school = new SchoolEnd();
   classr = new classroom();
   frameRate(100);
@@ -145,7 +146,7 @@ void draw(){
     text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.93);
     
     fill(150);
-    text("(App coming soon! Hang tight! Wallpaper done :D)",sizeX*0.05,sizeY*1.05);
+    text("(App coming soon! Hang tight! Any idea on what to replace the millisecond timer with?)",sizeX*0.05,sizeY*1.05);
     textAlign(CENTER,TOP); 
 
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
@@ -162,8 +163,9 @@ void draw(){
     hoursEnd.draw(m,h);
     minutesEnd.draw(s,m);
     secondsEnd.draw(1000-now.getMilliseconds(),s);
-    if (result > 0){  millisEnd.draw(now.getMilliseconds(),1000-now.getMilliseconds()); }
-    else{  millisEnd.draw(now.getMilliseconds(),0); }
+  
+    if (result > 0){  millisEnd.draw( 1000-((1000-now.getMilliseconds())*10)%1000 , 1000-now.getMilliseconds()  ); }
+    else{  millisEnd.draw(0 ,0); }
     
     //DRAW PERCENT BAR
     fill(20);
@@ -188,7 +190,7 @@ class Timer{
     total = total1; c = c1; r = r1; x = x1; y = y1; label = label1;
   }
   
-  void drawRing(int x, int y, float w1, float w2, int segments){
+  void drawRing(float x, float y, float w1, float w2, int segments){
     float deltaA=(1.0/(float)segments)*TWO_PI;
     beginShape(QUADS);
     for(int i=0;i<segments;i++)
@@ -201,7 +203,7 @@ class Timer{
     endShape();
   } 
   
-  void drawRingFract(int x, int y, float w1, float w2, int segments, float percent){
+  void drawRingFract(float x, float y, float w1, float w2, int segments, float percent){
     float deltaA=(1.0/(float)segments)*TWO_PI*percent;
     beginShape(QUADS);
     for(int i=0;i<segments;i++)
@@ -352,11 +354,11 @@ String realTime(){
 }
 
 class classroom{
-    String days = {"1,2,3|6,7,8","2,3,4|7,8,5","3,4,1|8,5,6","4,1,2|5,6,7","1,2,3,4|5,6,7,8","1,2,3,4|5,6,7,8","EXAM,EXAM"}; 
+    String[] days = {"1,2,3|6,7,8","2,3,4|7,8,5","3,4,1|8,5,6","4,1,2|5,6,7","1,2,3,4|5,6,7,8","1,2,3,4|5,6,7,8","EXAM,EXAM"}; 
     //0 = A day, 1 = B day etc..5 = half day, 6 =midterm, 7 = PARCC?
-    String parcc_days = {"PARCC,1|2,5,6","PARCC,3|4,7,8","PARCC,2|1,5,6","PARCC,4|3,7,8",
+    String[] parcc_days = {"PARCC,1|2,5,6","PARCC,3|4,7,8","PARCC,2|1,5,6","PARCC,4|3,7,8",
     "PARCC,1|2,5,6","PARCC,3|4,7,8","PARCC,1,2,3,4,5,6,7,8"}; //Parcc day schedule :(
-    String day_name = {"A","B","C","D","E","half day","midterm","modified"};
+    String[] day_name = {"A","B","C","D","E","half day","midterm","modified"};
     
     //Day types: 0 = A, 5 = half day, 6= midterm, 7 = MODIFIED SCHEDULE
     Day[] parcc = {new Day(4,19,7), new Day(4,20,7), new Day(4,21,7), new Day(4,22,7), new Day(4,27,7), new Day(4,28,7), new Day(4,29,7)};
@@ -375,23 +377,24 @@ class classroom{
     Day[] noschool = {new Day(9,7,5), new Day(9,14,5), new Day(9,23,5), new Day(10,12,5), new Day(11,5,5), new Day(11,6,5), new Day(11,26,5), new Day(11,27,5), new Day(12, 24,5),new Day(12, 25,5),new Day(12, 26,5),new Day(12, 27,5),new Day(12, 28,5),new Day(12, 29,5),new Day(12, 30,5),new Day(12, 31,5), new Day(1, 1,5),new Day(1, 2,5),new Day(1, 3,5),new Day(1, 4,5), new Day(1,18,5), new Day(2,15,5), new Day(2,16,5), new Day(4,11,5),new Day(4,12,5),new Day(4,13,5),new Day(4,14,5),new Day(4,15,5),new Day(5,30,5)};
     
     //Yay finally school times
+    //Yay finally school times
     ClassTime[][] classes = { 
-        {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //A days
-        {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //B days
-        {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //C days
-        {new ClassTime({27900, 31380}), new ClassTime({31620,35100}), new ClassTime({35340,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) },  //D days
-        {new ClassTime({27900, 30200}), new ClassTime({30720,33300}), new ClassTime({33540,36120}), new ClassTime({36360,38940}), new ClassTime({38940,42300}), new ClassTime({42300,44880}), new ClassTime({45120,47700}), new ClassTime({47940,50520}), new ClassTime({50760,53340}) }, //E day
-        {new ClassTime({27900, 29700}), new ClassTime({29880,31680}), new ClassTime({31860,33660}), new ClassTime({33840,35640}), new ClassTime({35820,34020}), new ClassTime({34200,39600}), new ClassTime({39780,41580}), new ClassTime({41760,43560}) }, //Half day
-        {new ClassTime({28800, 36000}), new ClassTime({37800,45000}) } //Midterm days lol
+        {new ClassTime(27900, 31380), new ClassTime(31620,35100), new ClassTime(35340,38820), new ClassTime(38820,42420), new ClassTime(42420,45900), new ClassTime(46140,49620), new ClassTime(49860,53340) }, 
+        {new ClassTime(27900, 31380), new ClassTime(31620,35100), new ClassTime(35340,38820), new ClassTime(38820,42420), new ClassTime(42420,45900), new ClassTime(46140,49620), new ClassTime(49860,53340) }, 
+        {new ClassTime(27900, 31380), new ClassTime(31620,35100), new ClassTime(35340,38820), new ClassTime(38820,42420), new ClassTime(42420,45900), new ClassTime(46140,49620), new ClassTime(49860,53340) }, 
+        {new ClassTime(27900, 31380), new ClassTime(31620,35100), new ClassTime(35340,38820), new ClassTime(38820,42420), new ClassTime(42420,45900), new ClassTime(46140,49620), new ClassTime(49860,53340) }, 
+        {new ClassTime(27900, 30200), new ClassTime(30720,33300), new ClassTime(33540,36120), new ClassTime(36360,38940), new ClassTime(38940,42300), new ClassTime(42300,44880), new ClassTime(45120,47700), new ClassTime(47940,50520), new ClassTime(50760,53340) }, 
+        {new ClassTime(27900, 29700), new ClassTime(29880,31680), new ClassTime(31860,33660), new ClassTime(33840,35640), new ClassTime(35820,34020), new ClassTime(34200,39600), new ClassTime(39780,41580), new ClassTime(41760,43560) },
+        {new ClassTime(28800, 36000), new ClassTime(37800,45000) } //Midterm days lol
     };
     
-    ClassTime[] parcc_day_1 = {new ClassTime({27900,35100}), new ClassTime({37800,38820}), new ClassTime({38820,42420}), new ClassTime({42420,45900}), new ClassTime({46140,49620}), new ClassTime({49860,53340}) };
-    Day special_parcc = new Day(4,29); //The one parcc day with periods 1-8
-    ClassTime[] parcc_day_2 = {new ClassTime({27900,35100}), new ClassTime({35100,36840}), new ClassTime({37020,38760}), new ClassTime({38760,42000}), new ClassTime({42000,43740}), new ClassTime({43920,45660}), new ClassTime({45840,47580}), new ClassTime({47760,49500}), new ClassTime({49680,51420}), new ClassTime({51600,53340})  };
+    ClassTime[] parcc_day_1 = {new ClassTime(27900,35100), new ClassTime(37800,38820), new ClassTime(38820,42420), new ClassTime(42420,45900), new ClassTime(46140,49620), new ClassTime(49860,53340) };
+    Day special_parcc = new Day(4,29,0); //The one parcc day with periods 1-8
+    ClassTime[] parcc_day_2 = {new ClassTime(27900,35100), new ClassTime(35100,36840), new ClassTime(37020,38760), new ClassTime(38760,42000), new ClassTime(42000,43740), new ClassTime(43920,45660), new ClassTime(45840,47580), new ClassTime(47760,49500), new ClassTime(49680,51420), new ClassTime(51600,53340)  };
     
     //Fuck u processing
     Day[] singleday = {new Day(11,25,5), new Day(12,23,5),new Day(1,29,5), new Day(2,24,5)};
-    Day[] midterm = {new Day(2,1), new Day(2,2), new Day(2,3), new Day(2,4)};
+    Day[] midterm = {new Day(2,1,0), new Day(2,2,0), new Day(2,3,0), new Day(2,4,0)};
     
     classroom(){
     }
@@ -501,10 +504,12 @@ class classroom{
     }
 }
 
+
 //Sigh class times are a pain :(
 class ClassTime{
-    float[][] times; //Array of array of times class start and end in seconds from 12:00 AM
-    ClassTime(float[][] time){
-        times = time;
+    float[] times; //Array of array of times class start and end in seconds from 12:00 AM
+    ClassTime(float t1, float t2){
+        float[] times2 = {t1,t2};
+        times = times2;
     }
 }
