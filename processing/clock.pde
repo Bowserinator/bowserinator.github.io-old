@@ -42,7 +42,7 @@ String[][] quotes = {
   {"People who think they know everything are a great annoyance to those of us who do.","Isaac Asimov"},
   {"I am not a speed reader. I am a speed understander.","Isaac Asimov"},
   {"It is not only the living that are killed in a war.","Isaac Asimov"},
-  {"Sucess is not final; failure is not fatal; it is the courage to continue that counts.","Winston Churchill"},
+  {"Success is not final; failure is not fatal; it is the courage to continue that counts.","Winston Churchill"},
   {"You have enemies? Good. That means you've stood up for something, sometime in your life.","Winston Churchill"},
   {"To improve is to change; to be perfect is to change often.","Winston Churchill"},
   {"I am fond of pigs. Dogs look up to us. Cats look down on us. Pigs treat us as equals.","Winston Churchill"},
