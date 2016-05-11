@@ -1,6 +1,6 @@
 //WIP
 //Add custom selection for day
-/* @pjs preload="https://www.walldevil.com/wallpapers/a54/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"; */
+/* @pjs preload="https://sites.google.com/site/bowserinator/github/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"; */
 
 Timer hoursEnd, minutesEnd, secondsEnd;
 SchoolEnd school;
@@ -108,7 +108,7 @@ void setup(){
   sizeX = window.innerWidth;
   sizeY = window.innerHeight;
   
-  back = requestImage("https://www.walldevil.com/wallpapers/a54/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
+  back = requestImage("https://sites.google.com/site/bowserinator/github/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
   hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.15,sizeY*0.5,"Hours");
   minutesEnd = new Timer(color(255,100,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Minutes"); //color(255,100,0)
   secondsEnd = new Timer(color(0,100,255),1000,sizeX*0.18,sizeX*0.62,sizeY*0.5,"Seconds");
