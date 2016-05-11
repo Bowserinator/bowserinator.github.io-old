@@ -145,7 +145,7 @@ void draw(){
     text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.93);
     
     fill(150);
-    text("(App coming soon! Hang tight! Wallpaper will be edited later)",sizeX*0.05,sizeY*1.05);
+    text("(App coming soon! Hang tight! Wallpaper done :D)",sizeX*0.05,sizeY*1.05);
     textAlign(CENTER,TOP); 
 
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
