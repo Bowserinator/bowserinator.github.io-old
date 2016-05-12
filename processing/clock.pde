@@ -136,7 +136,7 @@ void draw(){
     textSize(sizeX/70); 
     text("\""+rand_quote+"\"",sizeX/2,sizeX/20);
     textSize(sizeX/100); fill(150);
-    text(rand_cite,sizeX/2,sizeX/20+sizeX/50);
+    text(rand_cite,sizeX/2,sizeX/20+sizeX/70);
     
     pushMatrix(); translate(0,-0.15*sizeY);
     
