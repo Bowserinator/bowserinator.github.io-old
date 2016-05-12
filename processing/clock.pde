@@ -12,6 +12,7 @@ classroom classr;
 PImage back;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 String[][] quotes = { 
+  {"The day before the day after tomorrow is the day after the day before the day after yesterday.","Got bored on IRC chat."},
   {"bababadalgharaghtakamminarronnkonnbronntonnerronntuonnthunntrovarrhounawnskawntoohoohoordenenthurnuk","Just google it."},
   {"I lost the game.","Reference to the Game (Mind Game)"},
   {"Mortals. I envy you. You think you can change things. Stop the universe. Undo what was done long before you came along.","Beautiful Creatures"},
