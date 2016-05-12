@@ -12,6 +12,7 @@ classroom classr;
 PImage back;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 String[][] quotes = { 
+  {"I lost the game.","Reference to the Game (Mind Game)"},
   {"Mortals. I envy you. You think you can change things. Stop the universe. Undo what was done long before you came along. You are such beautiful creatures.","Beautiful Creatures"},
   {"Make it idiot proof and someone will make a better idiot.","Some guy online somewhere"},
   {"He was too busy asking if he could, he didn't stop to ask if he should.","Some guy online somewhere"},
