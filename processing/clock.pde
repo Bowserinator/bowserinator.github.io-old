@@ -84,7 +84,7 @@ String[][] quotes = {
   {"In 900 years of time and space, I’ve never met anyone who wasn’t important","12th Doctor, Doctor Who"},
   {"Do what I do. Hold tight and pretend it’s a plan!","12th Doctor, Doctor Who"},
   {"Never ignore coincidence. Unless, of course, you’re busy. In which case, always ignore coincidence.","12th Doctor, Doctor Who"},
-  {"We’re all stories, in the end. Just make it a good one, eh?","12th Doctor, Doctor Who"},
+  {"We're all stories, in the end. Just make it a good one, eh?","12th Doctor, Doctor Who"},
   {"Come on, Rory! It isn't rocket science, it's just quantum physics!","12th Doctor, Doctor Who"},
   {"Allons-y!","11th Doctor, Doctor Who"},
   {"When life gives you lemons, you dont make lemonade! You throw the lemons back at life","Cave Johnson, Portal Series"},
