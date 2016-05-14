@@ -9,7 +9,7 @@
 		+ - - - - - - - - - - - - - - - - - - - - -->
 		<style type="text/css">
 	body {
-	  background-color: #333; color: #bbb; line-height: normal;
+	  background-color: #FFF; color: #bbb; line-height: normal;
 	  font-family: Lucida Grande, Lucida Sans, Arial, Helvetica Neue, Verdana, Geneva, sans-serif;
 	  font-size: 11px; font-weight: normal; text-decoration: none;
 		  line-height: 1.5em;
@@ -49,6 +49,14 @@ function getProcessingSketchId () { return 'Flocking'; }
 
 	</head>
 	<body>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 		<div id="content">
 			<div>
 				<canvas id="Flocking" data-processing-sources="clock.pde" 
@@ -63,6 +71,6 @@ function getProcessingSketchId () { return 'Flocking'; }
 			
 		</div>
 	</body>
-<p>No view counter as [someone] decided to be an asshole and spam the counter. Times are only accurate within 10 seconds if your computer is synced with atomic time.</p>
-	
+<p>Times are only accurate within 10 seconds if your computer is synced with atomic time.</p>
+<div class="fb-like" data-href="https://www.facebook.com/BowserinatorProject/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>	
 </html>
