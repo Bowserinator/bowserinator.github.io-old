@@ -414,7 +414,7 @@ class classroom{
     //0 = A day, 1 = B day etc..5 = half day, 6 =midterm, 7 = PARCC?
     String[] parcc_days = {"PARCC,1|2,5,6","PARCC,3|4,7,8","PARCC,2|1,5,6","PARCC,4|3,7,8",
     "PARCC,1|2,5,6","PARCC,3|4,7,8","PARCC,1,2,3,4,5,6,7,8"}; //Parcc day schedule :(
-    String[] day_name = {"A","B","C","D","E","half day","midterm","modified"};
+    String[] day_name = {"A","B","C","D","E","half","midterm","modified"};
     
     //Day types: 0 = A, 5 = half day, 6= midterm, 7 = MODIFIED SCHEDULE
     Day[] parcc = {new Day(4,19,7), new Day(4,20,7), new Day(4,21,7), new Day(4,22,7), new Day(4,27,7), new Day(4,28,7), new Day(4,29,7)};
