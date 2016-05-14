@@ -388,7 +388,7 @@ class classroom{
         {new ClassTime(27900, 31380), new ClassTime(31620,35100), new ClassTime(35340,38820), new ClassTime(38820,42420), new ClassTime(42420,45900), new ClassTime(46140,49620), new ClassTime(49860,53340) }, 
         {new ClassTime(27900, 31380), new ClassTime(31620,35100), new ClassTime(35340,38820), new ClassTime(38820,42420), new ClassTime(42420,45900), new ClassTime(46140,49620), new ClassTime(49860,53340) }, 
         {new ClassTime(27900, 31380), new ClassTime(31620,35100), new ClassTime(35340,38820), new ClassTime(38820,42420), new ClassTime(42420,45900), new ClassTime(46140,49620), new ClassTime(49860,53340) }, 
-        {new ClassTime(27900, 30200), new ClassTime(30720,33300), new ClassTime(33540,36120), new ClassTime(36360,38940), new ClassTime(38940,42300), new ClassTime(42300,44880), new ClassTime(45120,47700), new ClassTime(47940,50520), new ClassTime(50760,53340) }, 
+        {new ClassTime(27900, 30480), new ClassTime(30720,33300), new ClassTime(33540,36120), new ClassTime(36360,38940), new ClassTime(38940,42300), new ClassTime(42300,44880), new ClassTime(45120,47700), new ClassTime(47940,50520), new ClassTime(50760,53340) }, 
         {new ClassTime(27900, 29700), new ClassTime(29880,31680), new ClassTime(31860,33660), new ClassTime(33840,35640), new ClassTime(35820,34020), new ClassTime(34200,39600), new ClassTime(39780,41580), new ClassTime(41760,43560) },
         {new ClassTime(28800, 36000), new ClassTime(37800,45000) } //Midterm days lol
     };
