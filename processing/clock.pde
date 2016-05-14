@@ -118,7 +118,7 @@ void setup(){
   hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Hours");
   minutesEnd = new Timer(color(255,100,0),60,sizeX*0.18,sizeX*0.62,sizeY*0.5,"Minutes"); //color(255,100,0)
   secondsEnd = new Timer(color(0,100,255),1000,sizeX*0.18,sizeX*0.85,sizeY*0.5,"Seconds");
-  millisEnd = new Timer(color(255,255,0),365,sizeX*0.18,sizeX*0.15,sizeY*0.5,"Days Left");
+  millisEnd = new Timer(color(255,255,0),180,sizeX*0.18,sizeX*0.15,sizeY*0.5,"Days Left");
   //15,38,62,85
   school = new SchoolEnd();
   classr = new classroom();
