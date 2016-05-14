@@ -8,6 +8,7 @@ SchoolEnd school;
 int sizeX, sizeY;
 int state = 0; // 0 = school countdown
 int m,h,s,result;
+boolean openSlide = false;
 classroom classr;
 PImage back;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
@@ -81,11 +82,11 @@ String[][] quotes = {
   {"If you hide your ignorance, no one will hit you and you'll never learn.","Fahrenheit 451 by Ray Bradbury"},
   {"When they give you lined paper, write the other way.","Fahrenheit 451 by Ray Bradbury"},
   {"The sun burnt every day. It burnt time.","Fahrenheit 451 by Ray Bradbury"},
-  {"It’s not the time that matters, it’s the person.","11th Doctor, Doctor Who"},
-  {"In 900 years of time and space, I’ve never met anyone who wasn’t important","12th Doctor, Doctor Who"},
-  {"Do what I do. Hold tight and pretend it’s a plan!","12th Doctor, Doctor Who"},
-  {"Never ignore coincidence. Unless, of course, you’re busy. In which case, always ignore coincidence.","12th Doctor, Doctor Who"},
-  {"We're all stories, in the end. Just make it a good one, eh?","12th Doctor, Doctor Who"},
+  {"Itâ€™s not the time that matters, itâ€™s the person.","11th Doctor, Doctor Who"},
+  {"In 900 years of time and space, Iâ€™ve never met anyone who wasnâ€™t important","12th Doctor, Doctor Who"},
+  {"Do what I do. Hold tight and pretend itâ€™s a plan!","12th Doctor, Doctor Who"},
+  {"Never ignore coincidence. Unless, of course, youâ€™re busy. In which case, always ignore coincidence.","12th Doctor, Doctor Who"},
+  {"Weâ€™re all stories, in the end. Just make it a good one, eh?","12th Doctor, Doctor Who"},
   {"Come on, Rory! It isn't rocket science, it's just quantum physics!","12th Doctor, Doctor Who"},
   {"Allons-y!","11th Doctor, Doctor Who"},
   {"When life gives you lemons, you dont make lemonade! You throw the lemons back at life","Cave Johnson, Portal Series"},
@@ -114,11 +115,11 @@ void setup(){
   sizeY = window.innerHeight;
   
   back = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
-  hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.15,sizeY*0.5,"Hours");
-  minutesEnd = new Timer(color(255,100,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Minutes"); //color(255,100,0)
-  secondsEnd = new Timer(color(0,100,255),1000,sizeX*0.18,sizeX*0.62,sizeY*0.5,"Seconds");
-  millisEnd = new Timer(color(255,255,0),1000,sizeX*0.18,sizeX*0.85,sizeY*0.5,"Milliseconds");
-  //15,38,62,8
+  hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Hours");
+  minutesEnd = new Timer(color(255,100,0),60,sizeX*0.18,sizeX*0.62,sizeY*0.5,"Minutes"); //color(255,100,0)
+  secondsEnd = new Timer(color(0,100,255),1000,sizeX*0.18,sizeX*0.85,sizeY*0.5,"Seconds");
+  millisEnd = new Timer(color(255,255,0),365,sizeX*0.18,sizeX*0.15,sizeY*0.5,"Days Left");
+  //15,38,62,85
   school = new SchoolEnd();
   classr = new classroom();
   frameRate(100);
@@ -151,7 +152,7 @@ void draw(){
     text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.93);
     
     fill(150);
-    text("(App coming soon! Hang tight! Any idea on what to replace the millisecond timer with?)",sizeX*0.05,sizeY*1.05);
+    text("(App coming soon! Hang tight! Chrome extension at https://goo.gl/TnDdcO)",sizeX*0.05,sizeY*1.05);
     textAlign(CENTER,TOP); 
 
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
@@ -169,8 +170,9 @@ void draw(){
     minutesEnd.draw(s,m);
     secondsEnd.draw(1000-now.getMilliseconds(),s);
   
-    if (result > 0){  millisEnd.draw( 1000-((1000-now.getMilliseconds())*10)%1000 , 1000-now.getMilliseconds()  ); }
-    else{  millisEnd.draw(0 ,0); }
+    //if (result > 0){  millisEnd.draw( 1000-((1000-now.getMilliseconds())*10)%1000 , 1000-now.getMilliseconds()  ); }
+    //else{  millisEnd.draw(0 ,0); }
+    millisEnd.draw(classr.daysLeft(),classr.daysLeft());
     
     //DRAW PERCENT BAR
     fill(20);
@@ -185,6 +187,54 @@ void draw(){
       text(int(100)+"%",sizeX*0.5,sizeY*0.69);
     }
     popMatrix();
+  }
+  
+  //Draw button on the side
+  fill(255,43,43,200);
+  rect(sizeX*0.95,0,sizeX*0.05,sizeY);
+  fill(255); textAlign(CENTER,CENTER); textSize(sizeX/40);
+  if(!openSlide){ text("<",sizeX*0.965,sizeY*0.5); }
+  else if(openSlide){ text(">",sizeX*0.965,sizeY*0.5); }
+  
+  if(openSlide){
+    fill(0,0,0,240);
+    rect(0,0,sizeX*0.95,sizeY); 
+    textAlign(LEFT,TOP); fill(255); textSize(sizeX/40);
+    
+    text("Time left (Labs): ",sizeX*0.01,sizeX*0.01);
+    fill(200); text(classr.timeLeftLab(school),sizeX*0.01 + textWidth("Time left (Labs): "),sizeX*0.01);
+    
+    fill(255); text("Time till summer ends: " ,sizeX*0.01,sizeX*0.03);
+    fill(200); text(classr.daysSummer() + " days", sizeX*0.01 + textWidth("Time till summer ends: "),sizeX*0.03);
+    
+    fill(150); text("Timer made by Bowserinator" ,sizeX*0.01,sizeX*0.05);
+    //text("[SCHEDULE]: " ,sizeX*0.01,sizeX*0.07);
+    fill(255);text("Today's Schedule",sizeX*0.01,sizeX*0.09);
+    
+    fill(200);
+    String[] schedule = classr.getTimeBlocks();
+    String final_s = "";
+    for(String x:schedule){
+      final_s += x;
+      final_s += "\n";
+    }
+    text(final_s ,sizeX*0.01,sizeX*0.12);
+    
+    fill(255);
+    text("Shortned url: http://goo.gl/4yUUqr",sizeX*0.55,sizeX*0.01);
+    text("Facebook:     https://goo.gl/CSEkuW",sizeX*0.55,sizeX*0.03);
+    
+    //Schedule goes like
+    //Time block 1 | 7:45-8:45 | 60 minutes
+  }
+  
+}
+
+
+
+void mousePressed(){
+  if(mouseX>= sizeX*0.95){
+    openSlide = !openSlide;
   }
 }
 
@@ -403,7 +453,102 @@ class classroom{
     
     classroom(){
     }
-
+    
+    String[] getTimeBlocks(){
+      for(Day i:noschool){
+        if (month() == i.month && day() == i.day) {
+          String[] returned = {"Time Block 1 | 00:00 - 00:00 | Length: 0",
+          "Time Block 2 | 00:00 - 00:00 | Length: 0",
+          "Time Block 3 | 00:00 - 00:00 | Length: 0",
+          "Time Block 4 | 00:00 - 00:00 | Length: 0",
+          "Time Block 5 | 00:00 - 00:00 | Length: 0",
+          "Time Block 6 | 00:00 - 00:00 | Length: 0",
+          "Time Block 7 | 00:00 - 00:00 | Length: 0",
+          "Time Block 8 | 00:00 - 00:00 | Length: 0"};
+          return returned;
+        }
+      }
+      
+      int i=0;
+      for(Day x:singleday){ 
+        if(x.month == month() && x.day == day()){ 
+          String[] returned = {"Time Block 1 | 07:45 - 08:15 | Length: 30 min",
+          "Time Block 2 | 08:18 - 08:48 | Length: 30 min",
+          "Time Block 3 | 08:51 - 09:21 | Length: 30 min",
+          "Time Block 4 | 09:24 - 09:54 | Length: 30 min",
+          "Time Block 5 | 09:57 - 10:27 | Length: 30 min",
+          "Time Block 6 | 10:30 - 11:00 | Length: 30 min",
+          "Time Block 7 | 11:03 - 11:33 | Length: 30 min",
+          "Time Block 8 | 11:36 - 12:06 | Length: 30 min"};
+          return returned;
+        }
+      }
+      
+      for(Day x:midterm){ 
+        if(x.month == month() && x.day == day()){
+          String[] returned = {"Time Block 1 | 08:00 - 10:00 | Length: 2 hours",
+          "Time Block 2 | 10:30 - 12:30 | Length: 2 hours"};
+          return returned;
+        }
+      }
+      for(Day x:parcc){
+        if (month() == x.month && day() == x.day) {
+          String[] returned = {"I lost the schedule lol"};
+          return returned;
+        }
+      }
+      if( month() == special_parcc.month && day() == special_parcc.day){ 
+        String[] returned = {"I lost the schedule lol"};
+        return returned;
+      }
+      
+      int day_type = -1; //0 = normal,  1 = e day
+      if(new Date().getDay() == 0 || new Date().getDay()==6){
+        String[] returned = {"Weekend | Weekend | Weekend"};
+        return returned;
+      } 
+      
+      for(Day i:exceptions){
+        if (month() == i.month && day() == i.day) {
+          if(i.type == 4){
+            day_type = 1;
+          }else{
+            day_type = 0;
+          }
+        }
+      }
+      if(day_type == -1){
+        if(new Date().getDay() == 5){
+          day_type = 1;
+        }else{
+          day_type = 0;
+        }
+      }
+      
+      if(day_type == 1){
+        String[] returned = {"Time Block 1 | 07:45 - 08:28 | Length: 44 min",
+          "Time Block 2 | 08:32 - 09:15 | Length: 44 min",
+          "Time Block 3 | 09:19 - 10:02 | Length: 43 min",
+          "Time Block 4 | 10:06 - 10:49 | Length: 45 min",
+          "Time Block L | 10:49 - 11:45 | Length: 56 min",
+          "Time Block 5 | 11:45 - 12:28 | Length: 43 min",
+          "Time Block 6 | 12:32 - 13:15 | Length: 43 min",
+          "Time Block 7 | 13:19 - 14:02 | Length: 43 min",
+          "Time Block 8 | 14:06 - 14:49 | Length: 43 min"
+        };
+        return returned;
+      }
+      
+      String[] returned = {"Time Block 1 | 07:45 - 08:43 | Length: 58 min",
+        "Time Block 2 | 08:47 - 09:45 | Length: 58 min",
+        "Time Block 3 | 09:49 - 10:47 | Length: 58 min",
+        "Time Block L | 10:47 - 11:47 | Length: 60 min",
+        "Time Block 4 | 11:47 - 12:45 | Length: 58 min",
+        "Time Block 5 | 12:49 - 13:47 | Length: 58 min",
+        "Time Block 6 | 13:51 - 14:49 | Length: 58 min"
+      };
+      return returned;
+    }
     
     String getSchedule(){
         for(Day i:noschool){if (month() == i.month && day() == i.day) {return "non-existant as there is no school.";}}
@@ -486,6 +631,53 @@ class classroom{
             } //Get time till class ends
           }return timeLeftToStr(timePossible);
         }
+    }
+    
+    int daysSummer(){
+      if((month() == 6 && day() > 23)||(month() > 6 && month() < 9) || (month() == 9 && day() < 9)){
+        int date1 = new Date(month()+"/"+day()+"/"+year());
+        int date2 = new Date("09/09/"+year());
+        int timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        int diffDays = ceil(timeDiff / (1000 * 3600 * 24)); 
+        return diffDays;
+      }return 0;
+    }
+    
+    int daysLeft(){
+      if(month() <= 6){
+        if(month() < 6 || (month() == 6 && day() <= 23)){
+          int date1 = new Date(month()+"/"+day()+"/"+year());
+          int date2 = new Date("06/23/"+year());
+          int timeDiff = Math.abs(date2.getTime() - date1.getTime());
+          int diffDays = ceil(timeDiff / (1000 * 3600 * 24)); 
+          return diffDays;
+        }
+      }
+      
+      if(month() == 6 && day() > 23){ return 0;}
+      if(month() > 6 && month() < 9){ return 0;}
+      if(month() == 9 && day() < 9){ return 0;}
+      
+      int date1 = new Date(month()+"/"+day()+"/"+year());
+      int date2 = new Date("06/23/"+(year()+1));
+      int timeDiff = Math.abs(date2.getTime() - date1.getTime());
+      int diffDays = ceil(timeDiff / (1000 * 3600 * 24)); 
+      return diffDays;
+    }
+    
+    String timeLeftLab(SchoolEnd e){
+      int returned = 0;
+      for(Day x:singleday){ if(x.month == month() && x.day == day()){ returned = 0;}}
+      for(Day x:midterm){ if(x.month == month() && x.day == day()){ returned = 0;}}
+      for(Day x:parcc){ if (month() == x.month && day() == x.day) {returned = 0;}}
+      if( month() == special_parcc.month && day() == special_parcc.day){ returned = 0;}
+
+      int current = hour()*3600 + minute()*60 + second() - e.TIMESHIFT;
+      if (current >= 38820 && current <= 40620){
+        returned = 40620-current;
+      }else{ returned = 0;}
+      return timeLeftToStr(returned);
+      
     }
     
     String timeLeftToStr(int x){
