@@ -505,7 +505,14 @@ class classroom{
       
       int day_type = -1; //0 = normal,  1 = e day
       if(new Date().getDay() == 0 || new Date().getDay()==6){
-        String[] returned = {"Weekend | Weekend | Weekend"};
+        String[] returned = {"Time Block 1 | 00:00 - 00:00 | Length: 0",
+        "Time Block 2 | 00:00 - 00:00 | Length: 0",
+        "Time Block 3 | 00:00 - 00:00 | Length: 0",
+        "Time Block 4 | 00:00 - 00:00 | Length: 0",
+        "Time Block 5 | 00:00 - 00:00 | Length: 0",
+        "Time Block 6 | 00:00 - 00:00 | Length: 0",
+        "Time Block 7 | 00:00 - 00:00 | Length: 0",
+        "Time Block 8 | 00:00 - 00:00 | Length: 0"};
         return returned;
       } 
       
