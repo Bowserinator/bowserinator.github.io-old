@@ -20,7 +20,7 @@ classroom classr;
 PImage back;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 String[][] quotes = { 
-  {"Rot26 is twice as secure as rot13!","A joke, google rot13 encryption."},
+  {"Rot26 is twice as secure as rot13!","A joke, see http://rot26.org/"},
   {"Don't look directly at the bugs!","Minecraft title splash"},
   {"There are two types of people: those who can extrapolate from incomplete data.","A joke."},
   {"The day before the day after tomorrow is the day after the day before the day after yesterday.","Got bored on IRC chat."},
