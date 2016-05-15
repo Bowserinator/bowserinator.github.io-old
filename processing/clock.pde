@@ -1,3 +1,10 @@
+/*This is probably the crappiest source code you've ever seen. Processing has no support for loading
+outside files builtin (I guess you could do it with javascript, I'aven't tried) so everything is in one file.
+The project was never meant to support all these features so a lot of code is copied all over the place.
+There are syntax errors and misused varaible types that are fine in javascript but not in java, this is probably
+because I made this on a text editor at school. Also the javascript console gives completly useless error messages
+so debugging is a pain. */
+
 //WIP
 //Add custom selection for day
 /* @pjs preload="https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"; */
