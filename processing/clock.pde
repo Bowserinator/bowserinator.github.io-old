@@ -161,7 +161,7 @@ void draw(){
     text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.93);
     
     fill(150);
-    text("(App coming soon! Hang tight! Chrome extension at https://goo.gl/TnDdcO)",sizeX*0.05,sizeY*1.05);
+    text("(App coming soon! Hang tight! Chrome extension at http://adf.ly/1aLXMQ)",sizeX*0.05,sizeY*1.05);
     textAlign(CENTER,TOP); 
 
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
@@ -231,7 +231,8 @@ void draw(){
     
     fill(255);
     text("Shortned url: http://goo.gl/4yUUqr",sizeX*0.55,sizeX*0.01);
-    text("Facebook:     https://goo.gl/CSEkuW",sizeX*0.55,sizeX*0.03);
+    text("Facebook:     http://adf.ly/1aLXRZ",sizeX*0.55,sizeX*0.03);
+    text("Click these adfly links to help me earn money :P",sizeX*0.55,sizeX*0.05);
     
     //Schedule goes like
     //Time block 1 | 7:45-8:45 | 60 minutes
