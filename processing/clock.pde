@@ -232,7 +232,7 @@ void draw(){
     fill(255);
     text("Shortned url: http://goo.gl/4yUUqr",sizeX*0.55,sizeX*0.01);
     text("Facebook:     http://adf.ly/1aLXRZ",sizeX*0.55,sizeX*0.03);
-    text("Click these adfly links to help me earn money :P",sizeX*0.55,sizeX*0.05);
+    text("Click adfly link to help earn $$",sizeX*0.55,sizeX*0.05);
     
     //Schedule goes like
     //Time block 1 | 7:45-8:45 | 60 minutes
