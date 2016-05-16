@@ -430,7 +430,7 @@ class classroom{
     new Day(10,16,0), new Day(11,2,4), new Day(11,3,4), new Day(11,4,4), new Day(12,21,4), new Day(12,22,4),
     new Day(1,22,0), new Day(2,17,4),new Day(2,18,4),new Day(2,19,4), 
     new Day(4,19,7), new Day(4,20,7), new Day(4,21,7), new Day(4,22,7), new Day(4,25,4), new Day(4,26,4),
-    new Day(4,27,7), new Day(4,28,7), new Day(4,29,7), new Day(5,16,7),  new Day(5,17,7),  new Day(5,18,7),
+    new Day(4,27,7), new Day(4,28,7), new Day(4,29,7),
     new Day(6,3,0), new Day(6,13,4), new Day(6,14,4), new Day(6,15,4), new Day(6,16,4), new Day(6,17,4), 
     //Single session new Days
     new Day(11,25,5), new Day(12,23,5), new Day(1,29,5), new Day(2,24,5),
