@@ -11,7 +11,7 @@ so debugging is a pain. */
 
 Timer hoursEnd, minutesEnd, secondsEnd;
 SchoolEnd school;
-LinkButton facebook_button, chrome_button, shortened_url;
+LinkButton facebook_button, chrome_button, shortened_url, survey_button;
 
 
 int sizeX, sizeY;
@@ -129,6 +129,7 @@ void setup(){
   facebook_button = new LinkButton("Facebook page: http://adf.ly/1aLXRZ","http://adf.ly/1aLXRZ");
   chrome_button = new LinkButton("Extension: http://adf.ly/1aLXMQ","http://adf.ly/1aLXMQ");
   shortened_button = new LinkButton("Shortned url: http://goo.gl/4yUUqr","http://goo.gl/4yUUqr");
+  survey_button = new LinkButton("Survey: [Click here]","http://goo.gl/forms/3StDySWVSzoykXDo1");
   
   back = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
   hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Hours");
@@ -240,7 +241,8 @@ void draw(){
     shortened_button.draw(sizeX*0.55,sizeX*0.01,sizeX/40);
     facebook_button.draw(sizeX*0.55,sizeX*0.03,sizeX/40);
     chrome_button.draw(sizeX*0.55,sizeX*0.05,sizeX/40);
-    text("Click adfly link to help earn $$",sizeX*0.55,sizeX*0.07);
+    survey_button.draw(sizeX*0.55,sizeX*0.07,sizeX/40);
+    text("Click adfly link to help earn $$",sizeX*0.55,sizeX*0.09);
     
     //Schedule goes like
     //Time block 1 | 7:45-8:45 | 60 minutes
@@ -259,6 +261,7 @@ void mousePressed(){
     facebook_button.isClick(sizeX*0.55,sizeX*0.03,sizeX/40);
     shortened_button.isClick(sizeX*0.55,sizeX*0.01,sizeX/40);
     chrome_button.isClick(sizeX*0.55,sizeX*0.05,sizeX/40);
+    survey_button.isClick(sizeX*0.55,sizeX*0.07,sizeX/40);
   }
 }
 
