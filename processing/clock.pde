@@ -168,7 +168,7 @@ void draw(){
     text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.93);
     
     fill(150);
-    text("(App coming soon! Hang tight! Now links are clickable!)",sizeX*0.05,sizeY*1.05);
+    text("(App coming soon! WOULD YOU LIKE ANNOYING POPUP ADS?? Vote BELOW)",sizeX*0.05,sizeY*1.05);
     textAlign(CENTER,TOP); 
 
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
