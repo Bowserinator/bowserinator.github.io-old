@@ -129,7 +129,7 @@ void setup(){
   facebook_button = new LinkButton("Facebook page: http://adf.ly/1aLXRZ","http://adf.ly/1aLXRZ");
   chrome_button = new LinkButton("Extension: http://adf.ly/1aLXMQ","http://adf.ly/1aLXMQ");
   shortened_button = new LinkButton("Shortned url: http://goo.gl/4yUUqr","http://goo.gl/4yUUqr");
-  survey_button = new LinkButton("Survey: [Click here]","http://goo.gl/forms/3StDySWVSzoykXDo1");
+  survey_button = new LinkButton("Suggestions: [Click here]","http://goo.gl/forms/3StDySWVSzoykXDo1");
   
   back = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
   hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Hours");
