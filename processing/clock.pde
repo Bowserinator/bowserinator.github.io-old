@@ -11,6 +11,8 @@ so debugging is a pain. */
 
 Timer hoursEnd, minutesEnd, secondsEnd;
 SchoolEnd school;
+LinkButton facebook_button, chrome_button, shortened_url;
+
 
 int sizeX, sizeY;
 int state = 0; // 0 = school countdown
@@ -124,6 +126,10 @@ void setup(){
   sizeX = window.innerWidth;
   sizeY = window.innerHeight;
   
+  facebook_button = new LinkButton("Facebook page: http://adf.ly/1aLXRZ","http://adf.ly/1aLXRZ");
+  chrome_button = new LinkButton("Extension: http://adf.ly/1aLXMQ","http://adf.ly/1aLXMQ");
+  shortened_button = new LinkButton("Shortned url: http://goo.gl/4yUUqr","http://goo.gl/4yUUqr");
+  
   back = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
   hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Hours");
   minutesEnd = new Timer(color(255,100,0),60,sizeX*0.18,sizeX*0.62,sizeY*0.5,"Minutes"); //color(255,100,0)
@@ -162,7 +168,7 @@ void draw(){
     text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.93);
     
     fill(150);
-    text("(App coming soon! Hang tight! Chrome extension at http://adf.ly/1aLXMQ)",sizeX*0.05,sizeY*1.05);
+    text("(App coming soon! Hang tight! Now links are clickable!)",sizeX*0.05,sizeY*1.05);
     textAlign(CENTER,TOP); 
 
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
@@ -231,9 +237,10 @@ void draw(){
     text(final_s ,sizeX*0.01,sizeX*0.12);
     
     fill(255);
-    text("Shortned url: http://goo.gl/4yUUqr",sizeX*0.55,sizeX*0.01);
-    text("Facebook:     http://adf.ly/1aLXRZ",sizeX*0.55,sizeX*0.03);
-    text("Click adfly link to help earn $$",sizeX*0.55,sizeX*0.05);
+    shortened_button.draw(sizeX*0.55,sizeX*0.01);
+    facebook_button.draw(sizeX*0.55,sizeX*0.03);
+    chrome_button.draw(sizeX*0.55,sizeX*0.05);
+    text("Click adfly link to help earn $$",sizeX*0.55,sizeX*0.07);
     
     //Schedule goes like
     //Time block 1 | 7:45-8:45 | 60 minutes
@@ -246,6 +253,12 @@ void draw(){
 void mousePressed(){
   if(mouseX>= sizeX*0.95){
     openSlide = !openSlide;
+  }
+
+  if(openSlide){
+    facebook_button.isClick(sizeX*0.55,sizeX*0.03,sizeX/40);
+    shortened_button.isClick(sizeX*0.55,sizeX*0.01,sizeX/40);
+    chrome_button.isClick(sizeX*0.55,sizeX*0.05,sizeX/40);
   }
 }
 
@@ -727,4 +740,24 @@ class ClassTime{
         float[] times2 = {t1,t2};
         times = times2;
     }
+}
+
+class LinkButton{
+  String txt, url;
+  LinkButton(String t1,String u){
+     txt = t1; url = u;
+  }
+  
+  void draw(float x,float y){
+    text(txt,x,y);
+  }
+  
+  boolean isClick(float x,float y,int textsize){
+    if(mouseX >= x && mouseX <= x+textWidth(txt)){
+      if(mouseY >= y && mouseY <= y+textsize){
+        link(url, "_new");
+        return true;
+      }
+    }return false;
+  }
 }
