@@ -237,9 +237,9 @@ void draw(){
     text(final_s ,sizeX*0.01,sizeX*0.12);
     
     fill(255);
-    shortened_button.draw(sizeX*0.55,sizeX*0.01);
-    facebook_button.draw(sizeX*0.55,sizeX*0.03);
-    chrome_button.draw(sizeX*0.55,sizeX*0.05);
+    shortened_button.draw(sizeX*0.55,sizeX*0.01,sizeX/40);
+    facebook_button.draw(sizeX*0.55,sizeX*0.03,sizeX/40);
+    chrome_button.draw(sizeX*0.55,sizeX*0.05,sizeX/40);
     text("Click adfly link to help earn $$",sizeX*0.55,sizeX*0.07);
     
     //Schedule goes like
@@ -748,8 +748,14 @@ class LinkButton{
      txt = t1; url = u;
   }
   
-  void draw(float x,float y){
+  void draw(float x,float y,textsize){
+    if(mouseX >= x && mouseX <= x+textWidth(txt)){
+      if(mouseY >= y && mouseY <= y+textsize){
+        fill(0,100,255);
+      }
+    }
     text(txt,x,y);
+    fill(255);
   }
   
   boolean isClick(float x,float y,int textsize){
@@ -760,4 +766,5 @@ class LinkButton{
       }
     }return false;
   }
+  
 }
