@@ -143,6 +143,10 @@ void setup(){
 }
 
 void draw(){
+  size(window.innerWidth, window.innerHeight);
+  sizeX = window.innerWidth;
+  sizeY = window.innerHeight;
+  
   background(50); //30
   image(back,0,0,window.innerWidth,window.innerHeight);
   noStroke(); fill(0,0,0,200);
