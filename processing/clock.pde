@@ -22,6 +22,7 @@ classroom classr;
 PImage back;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 String[][] quotes = { 
+  {"DONATE DONATE DONATE","DONATE DONATE DONATE"},
   {"There is no such thing as a new idea. It is impossible.","Mark Twain"},
   {"Everyone is racist.","[Citation redacted]"},
   {"sarcasm, it's just another free service I offer.","Not really, I was being sarcastic."},
