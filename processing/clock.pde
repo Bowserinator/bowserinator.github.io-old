@@ -23,7 +23,7 @@ PImage back;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 String[][] quotes = { 
   {"Violence is sometimes the answer","[Citation redacted]"},
-  {"I feel strong enough to punch mister Hitler right in the snoot!","A WWII American political cartoon"},
+  {"I feel strong enough to punch mister Hitler right in the snoot!","Dr. Seuss"},
   {"NOT IDIOT PROOF","DONT COMPLAIN LOL"},
   {"When I graduate I'll just take this down.",":D"},
   {"DONATE DONATE DONATE","DONATE DONATE DONATE"},
