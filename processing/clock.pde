@@ -142,10 +142,10 @@ void setup(){
   survey_button = new LinkButton("Suggestions: [Click here]","http://goo.gl/forms/3StDySWVSzoykXDo1");
   
   back = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
-  hoursEnd = new Timer(color(100,255,0),60,sizeX*0.18,sizeX*0.38,sizeY*0.5,"Hours");
-  minutesEnd = new Timer(color(255,100,0),60,sizeX*0.18,sizeX*0.62,sizeY*0.5,"Minutes"); //color(255,100,0)
-  secondsEnd = new Timer(color(0,100,255),1000,sizeX*0.18,sizeX*0.85,sizeY*0.5,"Seconds");
-  millisEnd = new Timer(color(255,255,0),180,sizeX*0.18,sizeX*0.15,sizeY*0.5,"Days Left");
+  hoursEnd = new Timer(color(100,255,0),60,"Hours");
+  minutesEnd = new Timer(color(255,100,0),60,"Minutes"); //color(255,100,0)
+  secondsEnd = new Timer(color(0,100,255),1000,"Seconds");
+  millisEnd = new Timer(color(255,255,0),180,"Days Left");
   //15,38,62,85
   school = new SchoolEnd();
   classr = new classroom();
@@ -197,13 +197,13 @@ void draw(){
     
     result = school.getTimeRemaining();
     h = floor(result/3600); m = floor((result - h*3600)/60); s = result - m*60 - h*3600;
-    hoursEnd.draw(m,h);
-    minutesEnd.draw(s,m);
-    secondsEnd.draw(1000-now.getMilliseconds(),s);
+    hoursEnd.draw(m,h,sizeX*0.18,sizeX*0.38,sizeY*0.5);
+    minutesEnd.draw(s,m,sizeX*0.18,sizeX*0.62,sizeY*0.5);
+    secondsEnd.draw(1000-now.getMilliseconds(),s,sizeX*0.18,sizeX*0.85,sizeY*0.5);
   
     //if (result > 0){  millisEnd.draw( 1000-((1000-now.getMilliseconds())*10)%1000 , 1000-now.getMilliseconds()  ); }
     //else{  millisEnd.draw(0 ,0); }
-    millisEnd.draw(classr.daysLeft(),classr.daysLeft());
+    millisEnd.draw(classr.daysLeft(),classr.daysLeft(),sizeX*0.18,sizeX*0.15,sizeY*0.5);
     
     //DRAW PERCENT BAR
     fill(20);
@@ -280,10 +280,10 @@ void mousePressed(){
 }
 
 class Timer{
-  float total,r,x,y;
+  float total;
   color c; String label;
-  Timer(color c1, float total1,float r1,float x1,float y1,String label1){
-    total = total1; c = c1; r = r1; x = x1; y = y1; label = label1;
+  Timer(color c1, float total1,String label1){
+    total = total1; c = c1;  label = label1;
   }
   
   void drawRing(float x, float y, float w1, float w2, int segments){
@@ -312,7 +312,7 @@ class Timer{
     endShape();
   } 
   
-  void draw(float time,float displayTime){
+  void draw(float time,float displayTime,float r,float x,float y){
     noStroke(); fill(50);
     drawRing(x,y,r/2.0,r*0.95/2,50);             //ellipse(x,y,r,r);
     fill(25);
