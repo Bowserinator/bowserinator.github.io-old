@@ -7,19 +7,26 @@ so debugging is a pain. */
 
 //WIP
 //Add custom selection for day
-/* @pjs preload="https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"; */
+/* @pjs preload="https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg,
+https://sites.google.com/site/bowserinator/files/ussr.png,
+https://sites.google.com/site/bowserinator/files/wave.jpg,
+https://sites.google.com/site/bowserinator/files/sun.jpg,
+https://sites.google.com/site/bowserinator/files/earth.jpg"; */
 
 Timer hoursEnd, minutesEnd, secondsEnd;
 SchoolEnd school;
 LinkButton facebook_button, chrome_button, shortened_url, survey_button;
 
-
-int sizeX, sizeY;
+int backgroundState = 0; //0 = default background, 1 = communist flag, 2 = Fancy wave background,3 = sunset, 
 int state = 0; // 0 = school countdown
 int m,h,s,result;
 boolean openSlide = false;
+boolean openBackgroundSlide = false;
+
+int backgroundSelect = backgroundState; //Default background selection thing
+
 classroom classr;
-PImage back;
+PImage[] backgrounds;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 String[][] quotes = { 
   {"Parting with friends is a sadness. A place is only a place","Dune by Frank Herbert"},
@@ -130,18 +137,35 @@ int index = new Date().getMilliseconds()%quotes.length;
 String rand_quote = quotes[index][0];
 String rand_cite = quotes[index][1];
 
+TextButton back_left,back_right,back_cancel,back_ok, back_open;
+String[] back_names;
+
 void setup(){
  // size(window.innerWidth,window.innerHeight);
   size(window.innerWidth, window.innerHeight);
   sizeX = window.innerWidth;
   sizeY = window.innerHeight;
   
+  back_left = new TextButton("<");
+  back_right = new TextButton(">");
+  back_cancel = new TextButton("X");
+  back_ok = new TextButton("\u2713");
+  back_open = new TextButton("| Background |");
+  
   facebook_button = new LinkButton("Facebook page: http://adf.ly/1aLXRZ","http://adf.ly/1aLXRZ");
   chrome_button = new LinkButton("Extension: http://adf.ly/1aLXMQ","http://adf.ly/1aLXMQ");
   shortened_button = new LinkButton("Shortned url: http://goo.gl/4yUUqr","http://goo.gl/4yUUqr");
   survey_button = new LinkButton("Suggestions: [Click here]","http://goo.gl/forms/3StDySWVSzoykXDo1");
   
-  back = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg");
+  //Name: default, ussr, wave, sunset painting, earth
+  back1 = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"); 
+  back2 = requestImage("https://sites.google.com/site/bowserinator/files/ussr.png");
+  back3 = requestImage("https://sites.google.com/site/bowserinator/files/wave.jpg");
+  back4 = requestImage("https://sites.google.com/site/bowserinator/files/sun.jpg");
+  back5 = requestImage("https://sites.google.com/site/bowserinator/files/earth.jpg"); 
+  backgrounds = {{back1},{back2},{back3},{back4},{back5}};
+  back_names = {"Default","Communism","Waves","Sunset painting","Earth"};
+  
   hoursEnd = new Timer(color(100,255,0),60,"Hours");
   minutesEnd = new Timer(color(255,100,0),60,"Minutes"); //color(255,100,0)
   secondsEnd = new Timer(color(0,100,255),1000,"Seconds");
@@ -158,7 +182,7 @@ void draw(){
   sizeY = window.innerHeight;
   
   background(50); //30
-  image(back,0,0,window.innerWidth,window.innerHeight);
+  image(backgrounds[backgroundState][  frameCount % backgrounds[backgroundState].length ],0,0,window.innerWidth,window.innerHeight);
   noStroke(); fill(0,0,0,200);
   rect(0,0,window.innerWidth,window.innerHeight);
   
@@ -227,6 +251,27 @@ void draw(){
   if(!openSlide){ text("<",sizeX*0.965,sizeY*0.5); }
   else if(openSlide){ text(">",sizeX*0.965,sizeY*0.5); }
   
+  back_open.draw(sizeX*0.7,sizeY*0.9,sizeX*0.2,sizeX*0.03,color(0));
+  
+  if(openBackgroundSlide){
+    fill(0,0,0,200); rect(0,0,sizeX,sizeY);
+    rectMode(CENTER); 
+    fill(255); rect(sizeX*0.5,sizeY*0.5,sizeX*0.35,sizeX*0.35);
+    rectMode(LEFT);
+    image(backgrounds[backgroundSelect][0], sizeX*0.345,sizeY*0.5-sizeX*0.155,sizeX*0.31,sizeX*0.31*0.625);
+    
+    back_left.draw(sizeX*0.1,sizeY*0.5 - sizeX*0.35/2,sizeX*0.1,sizeX*0.1,color(0)); fill(255);
+    back_right.draw(sizeX*0.8,sizeY*0.5 - sizeX*0.35/2,sizeX*0.1,sizeX*0.1,color(0)); fill(255);
+    back_cancel.draw(sizeX*0.1,sizeY*0.5 + sizeX*0.35/2 - sizeX*0.1,sizeX*0.1,sizeX*0.1,color(255,0,0)); fill(255);
+    back_ok.draw(sizeX*0.8,sizeY*0.5 + sizeX*0.35/2 - sizeX*0.1,sizeX*0.1,sizeX*0.1,color(0,255,0)); 
+    fill(0); textSize(sizeX/40);
+    
+    text(back_names[backgroundSelect], sizeX*0.5,sizeY*0.5 + sizeX*0.31*0.625*0.3); fill(100);
+    text("Crappy background selector", sizeX*0.5,sizeY*0.5 + sizeX*0.31*0.625*0.3 + sizeX*0.02);
+    text("Arrows = change background", sizeX*0.5,sizeY*0.5 + sizeX*0.31*0.625*0.3 + sizeX*0.04);
+    text("X = cancel check = OK", sizeX*0.5,sizeY*0.5 + sizeX*0.31*0.625*0.3 + sizeX*0.06);
+  }
+  
   if(openSlide){
     fill(0,0,0,240);
     rect(0,0,sizeX*0.95,sizeY); 
@@ -271,6 +316,30 @@ void mousePressed(){
     openSlide = !openSlide;
   }
 
+  if(back_open.isClick(sizeX*0.7,sizeY*0.9,sizeX*0.2,sizeX*0.03)){
+    openBackgroundSlide = !openBackgroundSlide;
+  }
+  if(openBackgroundSlide){
+    if(back_left.isClick(sizeX*0.1,sizeY*0.5 - sizeX*0.35/2,sizeX*0.1,sizeX*0.1)){ 
+      backgroundSelect -= 1;
+      backgroundSelect %= backgrounds.length;
+      if(backgroundSelect < 0){ backgroundSelect = backgrounds.length - backgroundState + 1; }
+    }
+    else if(back_right.isClick(sizeX*0.8,sizeY*0.5 - sizeX*0.35/2,sizeX*0.1,sizeX*0.1)){ 
+      backgroundSelect += 1;
+      backgroundSelect %= backgrounds.length;
+      backgroundSelect = abs(backgroundSelect);
+    }
+    else if(back_cancel.isClick(sizeX*0.1,sizeY*0.5 + sizeX*0.35/2 - sizeX*0.1,sizeX*0.1,sizeX*0.1)){
+      backgroundSelect = backgroundState;
+      openBackgroundSlide = false;
+    }
+    else if(back_ok.isClick(sizeX*0.8,sizeY*0.5 + sizeX*0.35/2 - sizeX*0.1,sizeX*0.1,sizeX*0.1)){
+      backgroundState = backgroundSelect;
+      openBackgroundSlide = false;
+    }
+  }
+  
   if(openSlide){
     facebook_button.isClick(sizeX*0.55,sizeX*0.03,sizeX/40);
     shortened_button.isClick(sizeX*0.55,sizeX*0.01,sizeX/40);
@@ -784,4 +853,26 @@ class LinkButton{
     }return false;
   }
   
+}
+
+
+class TextButton{
+  String txt;
+  TextButton(String txt1){
+    txt = txt1;
+  }
+  
+  void draw(float x,float y,float w,float h,color c){
+    rect(x,y,w,h);
+    fill(c); textSize(h); 
+    text(txt,x+w/2,y+h/2);
+  }
+  
+  boolean isClick(float x,float y,float w,float h){
+    if(mouseX >= x && mouseX <= x+w){
+      if(mouseY >= y && mouseY <= y+h){
+        return true;
+      }
+    }return false;
+  }
 }
