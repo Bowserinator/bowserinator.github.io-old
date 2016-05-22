@@ -15,7 +15,7 @@ https://sites.google.com/site/bowserinator/files/earth.jpg"; */
 
 Timer hoursEnd, minutesEnd, secondsEnd;
 SchoolEnd school;
-LinkButton facebook_button, chrome_button, shortened_url, survey_button;
+LinkButton facebook_button, chrome_button, shortened_url, survey_button, app_button;
 
 int backgroundState = 0; //0 = default background, 1 = communist flag, 2 = Fancy wave background,3 = sunset, 
 int state = 0; // 0 = school countdown
@@ -157,6 +157,7 @@ void setup(){
   chrome_button = new LinkButton("Extension: http://adf.ly/1aLXMQ","http://adf.ly/1aLXMQ");
   shortened_button = new LinkButton("Shortned url: http://goo.gl/4yUUqr","http://goo.gl/4yUUqr");
   survey_button = new LinkButton("Suggestions: [Click here]","http://goo.gl/forms/3StDySWVSzoykXDo1");
+  app_button = new LinkButton("Android App: [Click here]","http://adf.ly/1aUaws");
   
   //Name: default, ussr, wave, sunset painting, earth
   back1 = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"); 
@@ -302,7 +303,9 @@ void draw(){
     facebook_button.draw(sizeX*0.55,sizeX*0.03,sizeX/40);
     chrome_button.draw(sizeX*0.55,sizeX*0.05,sizeX/40);
     survey_button.draw(sizeX*0.55,sizeX*0.07,sizeX/40);
-    text("Click adfly link to help earn $$",sizeX*0.55,sizeX*0.09);
+    app_button.draw(sizeX*0.55,sizeX*0.09,sizeX/40);
+    
+    text("Click adfly link to help earn $$",sizeX*0.55,sizeX*0.11);
     
     //Schedule goes like
     //Time block 1 | 7:45-8:45 | 60 minutes
@@ -346,6 +349,7 @@ void mousePressed(){
     shortened_button.isClick(sizeX*0.55,sizeX*0.01,sizeX/40);
     chrome_button.isClick(sizeX*0.55,sizeX*0.05,sizeX/40);
     survey_button.isClick(sizeX*0.55,sizeX*0.07,sizeX/40);
+    app_button.isClick(sizeX*0.55,sizeX*0.09,sizeX/40);
   }
 }
 
