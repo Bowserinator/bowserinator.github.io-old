@@ -328,7 +328,7 @@ void mousePressed(){
     if(back_left.isClick(sizeX*0.1,sizeY*0.5 - sizeX*0.35/2,sizeX*0.1,sizeX*0.1)){ 
       backgroundSelect -= 1;
       backgroundSelect %= backgrounds.length;
-      if(backgroundSelect < 0){ backgroundSelect = backgrounds.length - backgroundState + 1; }
+      if(backgroundSelect < 0){ backgroundSelect = backgrounds.length - backgroundState; }
     }
     else if(back_right.isClick(sizeX*0.8,sizeY*0.5 - sizeX*0.35/2,sizeX*0.1,sizeX*0.1)){ 
       backgroundSelect += 1;
