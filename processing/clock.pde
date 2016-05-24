@@ -327,8 +327,8 @@ void mousePressed(){
   if(openBackgroundSlide){
     if(back_left.isClick(sizeX*0.1,sizeY*0.5 - sizeX*0.35/2,sizeX*0.1,sizeX*0.1)){ 
       backgroundSelect -= 1;
-      backgroundSelect %= backgrounds.length;
-      if(backgroundSelect < 0){ backgroundSelect = backgrounds.length - backgroundState; }
+      if(backgroundSelect != 0){ backgroundSelect %= backgrounds.length; }
+      if(backgroundSelect < 0){ backgroundSelect = backgrounds.length - 1; }
     }
     else if(back_right.isClick(sizeX*0.8,sizeY*0.5 - sizeX*0.35/2,sizeX*0.1,sizeX*0.1)){ 
       backgroundSelect += 1;
