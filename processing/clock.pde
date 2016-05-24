@@ -152,7 +152,7 @@ void setup(){
   back_right = new TextButton(">");
   back_cancel = new TextButton("X");
   back_ok = new TextButton("\u2713");
-  back_open = new TextButton("| Background |");
+  back_open = new TextButton(" Background ");
   
   facebook_button = new LinkButton("Facebook page: http://adf.ly/1aLXRZ","http://adf.ly/1aLXRZ");
   chrome_button = new LinkButton("Extension: http://adf.ly/1aLXMQ","http://adf.ly/1aLXMQ");
@@ -210,7 +210,7 @@ void draw(){
     text("Schedule: "+classr.getSchedule(),sizeX*0.05,sizeY*0.93);
     
     fill(150);
-    text("(App coming soon! WHO RATED THIS 1/10??!!!!!!!!!!!!)",sizeX*0.05,sizeY*1.05);
+    text("(APP IS OUT, SEE RED SLIDER >>>>>>)",sizeX*0.05,sizeY*1.05);
     textAlign(CENTER,TOP); 
 
     //text("Today's block schedule is [NOT HERE]",sizeX/2,sizeY*0.94);
@@ -870,7 +870,7 @@ class TextButton{
   
   void draw(float x,float y,float w,float h,color c){
     rect(x,y,w,h);
-    fill(c); textSize(h); 
+    fill(c); textSize(h*0.9); 
     text(txt,x+w/2,y+h/2);
   }
   
