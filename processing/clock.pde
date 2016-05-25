@@ -187,7 +187,7 @@ void draw(){
   sizeY = window.innerHeight;
   
   background(50); //30
-  image(backgrounds[backgroundState][  frameCount % backgrounds[backgroundState].length ],0,0,window.innerWidth,window.innerHeight);
+  image(backgrounds[backgroundState][  frameCount % backgrounds[backgroundState].length ],0,0,window.innerWidth*0.95,window.innerHeight);
   noStroke(); fill(0,0,0,200);
   rect(0,0,window.innerWidth,window.innerHeight);
   
