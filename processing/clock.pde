@@ -798,8 +798,8 @@ class classroom{
       if( month() == special_parcc.month && day() == special_parcc.day){ returned = 0;}
 
       int current = hour()*3600 + minute()*60 + second() - e.TIMESHIFT;
-      if (current >= 38820 && current <= 40620){
-        returned = 40620-current;
+      if (current >= 38820 && current <= 40620-240){
+        returned = 40620-240-current;
       }else{ returned = 0;}
       return timeLeftToStr(returned);
       
