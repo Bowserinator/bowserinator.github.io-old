@@ -30,6 +30,7 @@ classroom classr;
 PImage[] backgrounds;
 String[] months = {"Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"};
 String[][] quotes = { 
+  {"Drake wouldn't treat you like this","A meme apparently"},
   {"I am so clever that sometimes I don't understand a single word of what I am saying.","Oscar Wilde"},
   {"He who learns but does not think, is lost! He who dongs dongs, dongs dongs!","Confucius"},
   {"Parting with friends is a sadness. A place is only a place","Dune by Frank Herbert"},
