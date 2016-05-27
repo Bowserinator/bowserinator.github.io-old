@@ -12,7 +12,8 @@ https://sites.google.com/site/bowserinator/files/ussr.png,
 https://sites.google.com/site/bowserinator/files/wave.jpg,
 https://sites.google.com/site/bowserinator/files/sun.jpg,
 https://sites.google.com/site/bowserinator/files/earth.jpg,
-https://sites.google.com/site/bowserinator/files/405px-Meandros_flag.svg.png"; */
+https://sites.google.com/site/bowserinator/files/405px-Meandros_flag.svg.png,
+https://sites.google.com/site/bowserinator/files/drawing.png"; */
 
 Timer hoursEnd, minutesEnd, secondsEnd;
 SchoolEnd school;
@@ -169,8 +170,9 @@ void setup(){
   back4 = requestImage("https://sites.google.com/site/bowserinator/files/sun.jpg");
   back5 = requestImage("https://sites.google.com/site/bowserinator/files/earth.jpg");
   back6 = requestImage("https://sites.google.com/site/bowserinator/files/405px-Meandros_flag.svg.png");
-  backgrounds = {{back1},{back2},{back3},{back4},{back5},{back6}};
-  back_names = {"Default","Communism","Waves","Sunset painting","Earth","Neo Fascism"};
+  back7 = requestImage("https://sites.google.com/site/bowserinator/files/drawing.png");
+  backgrounds = {{back1},{back2},{back3},{back4},{back5},{back6},{back7}};
+  back_names = {"Default","Communism","Waves","Sunset painting","Earth","Neo Fascism","Cube Thing"};
   
   hoursEnd = new Timer(color(100,255,0),60,"Hours");
   minutesEnd = new Timer(color(255,100,0),60,"Minutes"); //color(255,100,0)
