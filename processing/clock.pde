@@ -717,7 +717,15 @@ class classroom{
         if( month() == special_parcc.month && day() == special_parcc.day){ i=-1;}
                         
         if(i==0){
-          i = new Date().getDay()-1; //Get a,b, ... days based on day of week
+            for(Day x:exceptions){
+                if(month() == x.month && day() == x.day){
+                    i = x.type;
+                    break;
+                }
+                else{
+                    i = new Date().getDay()-1; //Get a,b, ... days based on day of week
+                }
+            }
         }
         
         if (i>=0){
