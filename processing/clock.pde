@@ -165,7 +165,7 @@ void setup(){
   survey_button = new LinkButton("Suggestions: [Click here]","http://goo.gl/forms/3StDySWVSzoykXDo1");
   app_button = new LinkButton("Android App: [Click here]","http://adf.ly/1aUaws");
   ios_button = new LinkButton("IOS: [INFO]","https://sites.google.com/site/bowserinator/home/app-apple");
-  beta_button = new LinkButton("BETA COUNTDOWN HERE","http://adf.ly/1apTNY");
+  beta_button = new LinkButton("NEW VERSION (v4)","http://adf.ly/1apTNY");
   
   //Name: default, ussr, wave, sunset painting, earth
   back1 = requestImage("https://sites.google.com/site/bowserinator/files/log-tree-fir-forest-lake-mountain-snow-sky-cloud.jpg"); 
@@ -203,7 +203,7 @@ void draw(){
     Date now = new Date();
     textAlign(CENTER,TOP); 
     textSize(sizeX/20); fill(200);
-    text("School Countdown Timer",sizeX/2,0);
+    text("USE NEW ONE (SEE SLIDER -> NEW VERSION)",sizeX/2,0);
     textSize(sizeX/70); 
     text("\""+rand_quote+"\"",sizeX/2,sizeX/20);
     textSize(sizeX/100); fill(150);
