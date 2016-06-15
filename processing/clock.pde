@@ -161,10 +161,10 @@ void setup(){
   
   facebook_button = new LinkButton("Facebook page: http://adf.ly/1aLXRZ","http://adf.ly/1aLXRZ");
   chrome_button = new LinkButton("Extension: http://adf.ly/1aLXMQ","http://adf.ly/1aLXMQ");
-  shortened_button = new LinkButton("Shortned url: http://goo.gl/4yUUqr","http://goo.gl/4yUUqr");
-  survey_button = new LinkButton("Suggestions: [Click here]","http://goo.gl/forms/3StDySWVSzoykXDo1");
-  app_button = new LinkButton("Android App: [Click here]","http://adf.ly/1aUaws");
-  ios_button = new LinkButton("IOS: [INFO]","https://sites.google.com/site/bowserinator/home/app-apple");
+  shortened_button = new LinkButton("VVVVVVVV: http://goo.gl/4yUUqr","http://goo.gl/4yUUqr");
+  survey_button = new LinkButton("VVVVVVVV: [Click here]","http://goo.gl/forms/3StDySWVSzoykXDo1");
+  app_button = new LinkButton("VVVVVVV: [Click here]","http://adf.ly/1aUaws");
+  ios_button = new LinkButton("VVVVVVVV","https://sites.google.com/site/bowserinator/home/app-apple");
   beta_button = new LinkButton("NEW VERSION (v4)","http://adf.ly/1apTNY");
   
   //Name: default, ussr, wave, sunset painting, earth
@@ -203,7 +203,7 @@ void draw(){
     Date now = new Date();
     textAlign(CENTER,TOP); 
     textSize(sizeX/20); fill(200);
-    text("USE NEW ONE (SEE SLIDER -> NEW VERSION)",sizeX/2,0);
+    text("USE NEW ONE (SEE SLIDER ->)",sizeX/2,0);
     textSize(sizeX/70); 
     text("\""+rand_quote+"\"",sizeX/2,sizeX/20);
     textSize(sizeX/100); fill(150);
